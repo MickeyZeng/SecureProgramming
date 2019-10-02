@@ -257,14 +257,17 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
 		File file = new File(fileName);
 		if (file.exists() && file.isFile()) {
 			if (file.delete()) {
-				logger.debug("删除文件 " + fileName + " 成功!");
+				logger.debug("Delete " + fileName + " Sucessful!");
+//				logger.debug("删除文件 " + fileName + " 成功!");
 				return true;
 			} else {
-				logger.debug("删除文件 " + fileName + " 失败!");
+				logger.debug("Delete  " + fileName + " Fail!");
+//				logger.debug("删除文件 " + fileName + " 失败!");
 				return false;
 			}
 		} else {
-			logger.debug(fileName + " 文件不存在!");
+			logger.debug(fileName + " File not exists!");
+//			logger.debug(fileName + " 文件不存在!");
 			return true;
 		}
 	}
