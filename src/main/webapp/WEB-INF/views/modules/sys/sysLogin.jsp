@@ -3,7 +3,8 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>${fns:getConfig('productName')} 登录</title>
+	<title>${fns:getConfig('productName')} Login</title>
+<%--	<title>${fns:getConfig('productName')} 登录</title>--%>
 	<meta name="decorator" content="blank"/>
 	<style type="text/css">
       html,body,table{background-color:#f5f5f5;width:100%;text-align:center;}.form-signin-heading{font-family:Helvetica, Georgia, Arial, sans-serif, 黑体;font-size:36px;margin-bottom:20px;color:#0663a2;}
@@ -23,8 +24,10 @@
 					validateCode: {remote: "${pageContext.request.contextPath}/servlet/validateCodeServlet"}
 				},
 				messages: {
-					username: {required: "请填写用户名."},password: {required: "请填写密码."},
-					validateCode: {remote: "验证码不正确.", required: "请填写验证码."}
+					username: {required: "Please input username."},password: {required: "Input Password."},
+					// username: {required: "请填写用户名."},password: {required: "请填写密码."},
+					validateCode: {remote: "The verification code is not right.", required: "Please write the code."}
+					// validateCode: {remote: "验证码不正确.", required: "请填写验证码."}
 				},
 				errorLabelContainer: "#messageBox",
 				errorPlacement: function(error, element) {
@@ -34,7 +37,8 @@
 		});
 		// 如果在框架或在对话框中，则弹出提示并跳转到首页
 		if(self.frameElement && self.frameElement.tagName == "IFRAME" || $('#left').length > 0 || $('.jbox').length > 0){
-			alert('未登录或登录超时。请重新登录，谢谢！');
+			alert('You login session is unavailable 。Please login in！');
+			// alert('未登录或登录超时。请重新登录，谢谢！');
 			top.location = "${ctx}";
 		}
 	</script>
@@ -48,19 +52,25 @@
 	</div>
 	<h1 class="form-signin-heading">${fns:getConfig('productName')}</h1>
 	<form id="loginForm" class="form-signin" action="${ctx}/login" method="post">
-		<label class="input-label" for="username">登录名</label>
+		<label class="input-label" for="username">login Name</label>
+<%--		<label class="input-label" for="username">登录名</label>--%>
 		<input type="text" id="username" name="username" class="input-block-level required" value="${username}">
-		<label class="input-label" for="password">密码</label>
+		<label class="input-label" for="password">Password</label>
+<%--		<label class="input-label" for="password">密码</label>--%>
 		<input type="password" id="password" name="password" class="input-block-level required">
 		<c:if test="${isValidateCodeLogin}"><div class="validateCode">
-			<label class="input-label mid" for="validateCode">验证码</label>
+			<label class="input-label mid" for="validateCode">Vertification Code</label>
+<%--			<label class="input-label mid" for="validateCode">验证码</label>--%>
 			<sys:validateCode name="validateCode" inputCssStyle="margin-bottom:0;"/>
 		</div></c:if><%--
 		<label for="mobile" title="手机登录"><input type="checkbox" id="mobileLogin" name="mobileLogin" ${mobileLogin ? 'checked' : ''}/></label> --%>
-		<input class="btn btn-large btn-primary" type="submit" value="登 录"/>&nbsp;&nbsp;
-		<label for="rememberMe" title="下次不需要再登录"><input type="checkbox" id="rememberMe" name="rememberMe" ${rememberMe ? 'checked' : ''}/> 记住我（公共场所慎用）</label>
+		<input class="btn btn-large btn-primary" type="submit" value="Login in "/>&nbsp;&nbsp;
+<%--		<input class="btn btn-large btn-primary" type="submit" value="登 录"/>&nbsp;&nbsp;--%>
+		<label for="rememberMe" title="Do not need to login in again"><input type="checkbox" id="rememberMe" name="rememberMe" ${rememberMe ? 'checked' : ''}/> Remember me</label>
+<%--		<label for="rememberMe" title="下次不需要再登录"><input type="checkbox" id="rememberMe" name="rememberMe" ${rememberMe ? 'checked' : ''}/> 记住我（公共场所慎用）</label>--%>
 		<div id="themeSwitch" class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">${fns:getDictLabel(cookie.theme.value,'theme','默认主题')}<b class="caret"></b></a>
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">${fns:getDictLabel(cookie.theme.value,'theme','Theme')}<b class="caret"></b></a>
+<%--			<a class="dropdown-toggle" data-toggle="dropdown" href="#">${fns:getDictLabel(cookie.theme.value,'theme','默认主题')}<b class="caret"></b></a>--%>
 			<ul class="dropdown-menu">
 			  <c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
 			</ul>
@@ -68,7 +78,7 @@
 		</div>
 	</form>
 	<div class="footer">
-		Copyright &copy; 2012-${fns:getConfig('copyrightYear')} <a href="${pageContext.request.contextPath}${fns:getFrontPath()}">${fns:getConfig('productName')}</a> - Powered By <a href="http://jeesite.com" target="_blank">JeeSite</a> ${fns:getConfig('version')} 
+		Copyright &copy; 2012-${fns:getConfig('copyrightYear')} <a href="${pageContext.request.contextPath}${fns:getFrontPath()}">${fns:getConfig('productName')}</a> - Powered By <a href="http://jeesite.com" target="_blank">Voting system</a> ${fns:getConfig('version')}
 	</div>
 	<script src="${ctxStatic}/flash/zoom.min.js" type="text/javascript"></script>
 </body>

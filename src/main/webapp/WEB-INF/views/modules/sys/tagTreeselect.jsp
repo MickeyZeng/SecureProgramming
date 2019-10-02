@@ -2,7 +2,8 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>数据选择</title>
+	<title>Select Data</title>
+<%--	<title>数据选择</title>--%>
 	<meta name="decorator" content="blank"/>
 	<%@include file="/WEB-INF/views/include/treeview.jsp" %>
 	<script type="text/javascript">
@@ -183,12 +184,15 @@
 </head>
 <body>
 	<div style="position:absolute;right:8px;top:5px;cursor:pointer;" onclick="search();">
-		<i class="icon-search"></i><label id="txt">搜索</label>
+		<i class="icon-search"></i><label id="txt">Search</label>
+<%--		<i class="icon-search"></i><label id="txt">搜索</label>--%>
 	</div>
 	<div id="search" class="form-search hide" style="padding:10px 0 0 13px;">
-		<label for="key" class="control-label" style="padding:5px 5px 3px 0;">关键字：</label>
+		<label for="key" class="control-label" style="padding:5px 5px 3px 0;">Key Word：</label>
+<%--		<label for="key" class="control-label" style="padding:5px 5px 3px 0;">关键字：</label>--%>
 		<input type="text" class="empty" id="key" name="key" maxlength="50" style="width:110px;">
-		<button class="btn" id="btn" onclick="searchNode()">搜索</button>
+		<button class="btn" id="btn" onclick="searchNode()">Search</button>
+<%--		<button class="btn" id="btn" onclick="searchNode()">搜索</button>--%>
 	</div>
 	<div id="tree" class="ztree" style="padding:15px 20px;"></div>
 </body>

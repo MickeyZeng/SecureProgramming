@@ -2,7 +2,8 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>角色管理</title>
+	<title>Role Management</title>
+<%--	<title>角色管理</title>--%>
 	<meta name="decorator" content="default"/>
 	<%@include file="/WEB-INF/views/include/treeview.jsp" %>
 	<script type="text/javascript">
@@ -14,8 +15,10 @@
 					enname: {remote: "${ctx}/sys/role/checkEnname?oldEnname=" + encodeURIComponent("${role.enname}")}
 				},
 				messages: {
-					name: {remote: "角色名已存在"},
-					enname: {remote: "英文名已存在"}
+					name: {remote: "Exists Role"},
+					// name: {remote: "角色名已存在"},
+					enname: {remote: "Exists English Name"}
+					// enname: {remote: "英文名已存在"}
 				},
 				submitHandler: function(form){
 					var ids = [], nodes = tree.getCheckedNodes(true);
@@ -28,12 +31,14 @@
 						ids2.push(nodes2[i].id);
 					}
 					$("#officeIds").val(ids2);
-					loading('正在提交，请稍等...');
+					loading('Loading...');
+					// loading('正在提交，请稍等...');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
 				errorPlacement: function(error, element) {
-					$("#messageBox").text("输入有误，请先更正。");
+					$("#messageBox").text("Wrong Input, Please modified...");
+					// $("#messageBox").text("输入有误，请先更正。");
 					if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
 						error.appendTo(element.parent().parent());
 					} else {
@@ -50,7 +55,8 @@
 			
 			// 用户-菜单
 			var zNodes=[
-					<c:forEach items="${menuList}" var="menu">{id:"${menu.id}", pId:"${not empty menu.parent.id?menu.parent.id:0}", name:"${not empty menu.parent.id?menu.name:'权限列表'}"},
+					<c:forEach items="${menuList}" var="menu">{id:"${menu.id}", pId:"${not empty menu.parent.id?menu.parent.id:0}", name:"${not empty menu.parent.id?menu.name:'Authentication list'}"},
+<%--					<c:forEach items="${menuList}" var="menu">{id:"${menu.id}", pId:"${not empty menu.parent.id?menu.parent.id:0}", name:"${not empty menu.parent.id?menu.name:'权限列表'}"},--%>
 		            </c:forEach>];
 			// 初始化树结构
 			var tree = $.fn.zTree.init($("#menuTree"), setting, zNodes);
@@ -98,21 +104,26 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/role/">角色列表</a></li>
-		<li class="active"><a href="${ctx}/sys/role/form?id=${role.id}">角色<shiro:hasPermission name="sys:role:edit">${not empty role.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/sys/role/">Role List</a></li>
+<%--		<li><a href="${ctx}/sys/role/">角色列表</a></li>--%>
+		<li class="active"><a href="${ctx}/sys/role/form?id=${role.id}">Role<shiro:hasPermission name="sys:role:edit">${not empty role.id?'Update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">Check</shiro:lacksPermission></a></li>
+<%--		<li class="active"><a href="${ctx}/sys/role/form?id=${role.id}">角色<shiro:hasPermission name="sys:role:edit">${not empty role.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">查看</shiro:lacksPermission></a></li>--%>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="role" action="${ctx}/sys/role/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
 		<div class="control-group">
-			<label class="control-label">归属机构:</label>
+			<label class="control-label">Office:</label>
+<%--			<label class="control-label">归属机构:</label>--%>
 			<div class="controls">
                 <sys:treeselect id="office" name="office.id" value="${role.office.id}" labelName="office.name" labelValue="${role.office.name}"
-					title="机构" url="/sys/office/treeData" cssClass="required"/>
+					title="Office" url="/sys/office/treeData" cssClass="required"/>
+<%--					title="机构" url="/sys/office/treeData" cssClass="required"/>--%>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">角色名称:</label>
+			<label class="control-label">Role Name:</label>
+<%--			<label class="control-label">角色名称:</label>--%>
 			<div class="controls">
 				<input id="oldName" name="oldName" type="hidden" value="${role.name}">
 				<form:input path="name" htmlEscape="false" maxlength="50" class="required"/>
@@ -120,57 +131,72 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">英文名称:</label>
+			<label class="control-label">English Name:</label>
+<%--			<label class="control-label">英文名称:</label>--%>
 			<div class="controls">
 				<input id="oldEnname" name="oldEnname" type="hidden" value="${role.enname}">
 				<form:input path="enname" htmlEscape="false" maxlength="50" class="required"/>
-				<span class="help-inline"><font color="red">*</font> 工作流用户组标识</span>
+				<span class="help-inline"><font color="red">*</font> Work flow sign</span>
+<%--				<span class="help-inline"><font color="red">*</font> 工作流用户组标识</span>--%>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">角色类型:</label>
+			<label class="control-label">Role Type:</label>
+<%--			<label class="control-label">角色类型:</label>--%>
 			<div class="controls"><%--
 				<form:input path="roleType" htmlEscape="false" maxlength="50" class="required"/>
 				<span class="help-inline" title="activiti有3种预定义的组类型：security-role、assignment、user 如果使用Activiti Explorer，需要security-role才能看到manage页签，需要assignment才能claim任务">
 					工作流组用户组类型（security-role：管理员、assignment：可进行任务分配、user：普通用户）</span> --%>
 				<form:select path="roleType" class="input-medium">
-					<form:option value="assignment">任务分配</form:option>
-					<form:option value="security-role">管理角色</form:option>
-					<form:option value="user">普通角色</form:option>
+					<form:option value="assignment">Mission Allocated</form:option>
+<%--					<form:option value="assignment">任务分配</form:option>--%>
+					<form:option value="security-role">Manage Role</form:option>
+<%--					<form:option value="security-role">管理角色</form:option>--%>
+					<form:option value="user">Ordinary Role</form:option>
+<%--					<form:option value="user">普通角色</form:option>--%>
 				</form:select>
-				<span class="help-inline" title="activiti有3种预定义的组类型：security-role、assignment、user 如果使用Activiti Explorer，需要security-role才能看到manage页签，需要assignment才能claim任务">
-					工作流组用户组类型（任务分配：assignment、管理角色：security-role、普通角色：user）</span>
+				<span class="help-inline" title="activiti there are three types：security-role、assignment、user if it uses Activiti Explorer，need security-role can see manage title，need assignment to finish claim mission">
+<%--				<span class="help-inline" title="activiti有3种预定义的组类型：security-role、assignment、user 如果使用Activiti Explorer，需要security-role才能看到manage页签，需要assignment才能claim任务">--%>
+					Work flow in user type（Mission allocated：assignment、Manage Role：security-role、Ordinary Role：user）</span>
+<%--					工作流组用户组类型（任务分配：assignment、管理角色：security-role、普通角色：user）</span>--%>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">是否系统数据:</label>
+			<label class="control-label">Is data in system:</label>
+<%--			<label class="control-label">是否系统数据:</label>--%>
 			<div class="controls">
 				<form:select path="sysData">
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
-				<span class="help-inline">“是”代表此数据只有超级管理员能进行修改，“否”则表示拥有角色修改人员的权限都能进行修改</span>
+				<span class="help-inline">“Yes”means only the super admin can update the data，“No” means only user can update it</span>
+<%--				<span class="help-inline">“是”代表此数据只有超级管理员能进行修改，“否”则表示拥有角色修改人员的权限都能进行修改</span>--%>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">是否可用</label>
+			<label class="control-label">Usable</label>
+<%--			<label class="control-label">是否可用</label>--%>
 			<div class="controls">
 				<form:select path="useable">
 					<form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
-				<span class="help-inline">“是”代表此数据可用，“否”则表示此数据不可用</span>
+				<span class="help-inline">“Yes” means it is usable，“No” means it is not usable</span>
+<%--				<span class="help-inline">“是”代表此数据可用，“否”则表示此数据不可用</span>--%>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">数据范围:</label>
+			<label class="control-label">DataScope:</label>
+<%--			<label class="control-label">数据范围:</label>--%>
 			<div class="controls">
 				<form:select path="dataScope" class="input-medium">
 					<form:options items="${fns:getDictList('sys_data_scope')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
-				<span class="help-inline">特殊情况下，设置为“按明细设置”，可进行跨机构授权</span>
+				<span class="help-inline">In some cases，set it  to“setting by specific detail”，and it can give authorization</span>
+<%--				<span class="help-inline">特殊情况下，设置为“按明细设置”，可进行跨机构授权</span>--%>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">角色授权:</label>
+			<label class="control-label">Role Authentication:</label>
+<%--			<label class="control-label">角色授权:</label>--%>
 			<div class="controls">
 				<div id="menuTree" class="ztree" style="margin-top:3px;float:left;"></div>
 				<form:hidden path="menuIds"/>
@@ -179,16 +205,19 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">备注:</label>
+			<label class="control-label">Comment:</label>
+<%--			<label class="control-label">备注:</label>--%>
 			<div class="controls">
 				<form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
 			</div>
 		</div>
 		<div class="form-actions">
-			<c:if test="${(role.sysData eq fns:getDictValue('是', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('是', 'yes_no', '1'))}">
-				<shiro:hasPermission name="sys:role:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<c:if test="${(role.sysData eq fns:getDictValue('Yes', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('Yes', 'yes_no', '1'))}">
+<%--			<c:if test="${(role.sysData eq fns:getDictValue('是', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('是', 'yes_no', '1'))}">--%>
+				<shiro:hasPermission name="sys:role:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Save"/>&nbsp;</shiro:hasPermission>
+<%--				<shiro:hasPermission name="sys:role:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>--%>
 			</c:if>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<input id="btnCancel" class="btn" type="button" value="Return" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
 </body>
