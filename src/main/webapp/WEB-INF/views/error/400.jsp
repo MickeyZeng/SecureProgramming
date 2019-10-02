@@ -5,7 +5,8 @@ response.setStatus(400);
 Throwable ex = Exceptions.getThrowable(request);
 
 // 编译错误信息
-StringBuilder sb = new StringBuilder("错误信息：\n");
+StringBuilder sb = new StringBuilder("Error Messages：\n");
+//StringBuilder sb = new StringBuilder("错误信息：\n");
 if (ex != null) {
 	if (ex instanceof BindException) {
 		for (ObjectError e : ((BindException)ex).getGlobalErrors()){
@@ -24,7 +25,8 @@ if (ex != null) {
 		sb.append("☆" + ex.getMessage());
 	}
 } else {
-	sb.append("未知错误.\n\n");
+	sb.append("Unknown Error.\n\n");
+//	sb.append("未知错误.\n\n");
 }
 
 // 如果是异步请求或是手机端，则直接返回信息
@@ -49,12 +51,14 @@ else {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>400 - 请求出错</title>
+	<title>400 - Request Error</title>
+<%--	<title>400 - 请求出错</title>--%>
 	<%@include file="/WEB-INF/views/include/head.jsp" %>
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="page-header"><h1>参数有误,服务器无法解析.</h1></div>
+		<div class="page-header"><h1>Wrong Parameter,Server cannot Encoding.</h1></div>
+<%--		<div class="page-header"><h1>参数有误,服务器无法解析.</h1></div>--%>
 		<div class="errorMessage">
 			<%=StringUtils.toHtml(sb.toString())%> <br/>
 		</div>

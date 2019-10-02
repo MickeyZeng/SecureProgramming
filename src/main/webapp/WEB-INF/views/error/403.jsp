@@ -9,7 +9,8 @@ if (Servlets.isAjaxRequest(request)) {
 	if (ex!=null && StringUtils.startsWith(ex.getMessage(), "msg:")){
 		out.print(StringUtils.replace(ex.getMessage(), "msg:", ""));
 	}else{
-		out.print("操作权限不足.");
+		out.print("Not Authorization.");
+//		out.print("操作权限不足.");
 	}
 }
 
