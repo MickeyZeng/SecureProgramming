@@ -62,7 +62,8 @@ public class WeixinController extends BaseController {
 				"<FromUserName><![CDATA[fromUser]]></FromUserName>" +
 				"<CreateTime>12345678</CreateTime>" +
 				"<MsgType><![CDATA[text]]></MsgType>" +
-				"<Content><![CDATA[你好]]></Content>" +
+				"<Content><![CDATA[Hello]]></Content>" +
+//				"<Content><![CDATA[你好]]></Content>" +
 				"</xml>");
 		return result.toString();
 	}

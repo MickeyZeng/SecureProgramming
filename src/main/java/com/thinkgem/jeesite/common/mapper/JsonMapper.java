@@ -246,12 +246,14 @@ public class JsonMapper extends ObjectMapper {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("id", 1);
 		map.put("pId", -1);
-		map.put("name", "根节点");
+//		map.put("name", "根节点");
+		map.put("name", "Node");
 		list.add(map);
 		map = Maps.newHashMap();
 		map.put("id", 2);
 		map.put("pId", 1);
-		map.put("name", "你好");
+		map.put("name", "Hello");
+//		map.put("name", "你好");
 		map.put("open", true);
 		list.add(map);
 		String json = JsonMapper.getInstance().toJson(list);
