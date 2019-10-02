@@ -2,7 +2,8 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>机构管理</title>
+	<title>Office Management</title>
+<%--	<title>机构管理</title>--%>
 	<meta name="decorator" content="default"/>
 	<%@include file="/WEB-INF/views/include/treeview.jsp" %>
 	<style type="text/css">
@@ -14,7 +15,8 @@
 	<div id="content" class="row-fluid">
 		<div id="left" class="accordion-group">
 			<div class="accordion-heading">
-		    	<a class="accordion-toggle">组织机构<i class="icon-refresh pull-right" onclick="refreshTree();"></i></a>
+		    	<a class="accordion-toggle">Office Oragranzation<i class="icon-refresh pull-right" onclick="refreshTree();"></i></a>
+<%--		    	<a class="accordion-toggle">组织机构<i class="icon-refresh pull-right" onclick="refreshTree();"></i></a>--%>
 		    </div>
 			<div id="ztree" class="ztree"></div>
 		</div>
