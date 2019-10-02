@@ -4,7 +4,8 @@
 	<header>
         <h1 class="title">${fns:getConfig('productName')}</h1>
         <nav class="right">
-            <a data-icon="arrow-down-left-2" href="#" id="btnLogout">退出</a>
+            <a data-icon="arrow-down-left-2" href="#" id="btnLogout">Sign Out</a>
+<%--            <a data-icon="arrow-down-left-2" href="#" id="btnLogout">退出</a>--%>
         </nav>
     </header>
     <article class="active" data-scroll="true">
@@ -13,7 +14,8 @@
             <li data-icon="next" data-selected="selected">
                 <span class="icon user"></span>
                 <a href="#user_section?test=abc" data-target="section">
-                    <strong>用户管理</strong>
+                    <strong>User Manage</strong>
+<%--                    <strong>用户管理</strong>--%>
                 </a>
             </li>
         </ul>
@@ -21,10 +23,12 @@
     </article>
     <script type="text/javascript">
    		$('#btnLogout').tap(function(){
-   			J.confirm('确认提示','确认要退出吗？',function(){
+   			// J.confirm('确认提示','确认要退出吗？',function(){
+   			J.confirm('Confirm','Exists?？',function(){
    				$.get("${ctx}/logout", function(){
    					sessionid = '';
-   					J.showToast('退出成功！', 'success');
+   					J.showToast('Sign out！', 'success');
+   					// J.showToast('退出成功！', 'success');
    					J.Router.goTo('#login_section');
    				});
    			});
