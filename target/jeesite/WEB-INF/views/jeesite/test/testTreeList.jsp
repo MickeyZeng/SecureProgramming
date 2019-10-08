@@ -57,11 +57,16 @@
 	<table id="treeTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>名称</th>
-				<th>排序</th>
-				<th>更新时间</th>
-				<th>备注信息</th>
-				<shiro:hasPermission name="test:testTree:edit"><th>操作</th></shiro:hasPermission>
+<%--				<th>名称</th>--%>
+<%--				<th>排序</th>--%>
+<%--				<th>更新时间</th>--%>
+<%--				<th>备注信息</th>--%>
+				<th>Name</th>
+				<th>Order</th>
+				<th>Update Date</th>
+				<th>Comment</th>
+				<shiro:hasPermission name="test:testTree:edit"><th>Operator</th></shiro:hasPermission>
+<%--				<shiro:hasPermission name="test:testTree:edit"><th>操作</th></shiro:hasPermission>--%>
 			</tr>
 		</thead>
 		<tbody id="treeTableList"></tbody>
