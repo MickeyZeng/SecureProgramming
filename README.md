@@ -11,8 +11,9 @@
   *5.* Now,You can run this Program and see the login page. 
   
   *6.* you can login in by two acoounts
-	**a. Account: sd_admin Password: sd_admin (ROLE: System admin)**
+  
+	a. Account: sd_admin Password: sd_admin (ROLE: System admin)
 	
-	**b. Account: jn_jsb Password: jn_jsb (ROLE: Normal voter)**
+	b. Account: jn_jsb Password: jn_jsb (ROLE: Normal voter)
   
   *[Notice: So far, some main functions does not finish yet, such as function of regrstration, function of vote.]*
