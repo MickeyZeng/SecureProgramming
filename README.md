@@ -1,4 +1,4 @@
-How to set up this system?
+#How to set up this system?
 1. Run sql script named 'jeesiteTest.sql' in databases (RECOMMAND: Mysql)
 2. Open the IDEA (RECOMMAND: IntelliJ) and import the project by 'pom.xml' [NOTICE: If there are some issues in this period, you can clean the pom file and restart this pom. And if it still does not work, you can download some packages manually]
 3. Edit configuration and put this project in Server (RECOMMAND: Tomcat)
