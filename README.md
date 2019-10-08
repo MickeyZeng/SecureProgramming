@@ -22,10 +22,10 @@
   
 	a. Account: sd_admin Password: sd_admin (ROLE: System admin)
 	
-	![image](http://github.com/MickeyZeng/SecureProgramming/raw/master/Image/adminScreentshot.png)
+![image](http://github.com/MickeyZeng/SecureProgramming/raw/master/Image/adminScreentshot.png)
 	
 	b. Account: jn_jsb Password: jn_jsb (ROLE: Normal voter)
 	
-	![image](http://github.com/MickeyZeng/SecureProgramming/raw/master/Image/voteScreentshot.png)
+![image](http://github.com/MickeyZeng/SecureProgramming/raw/master/Image/voteScreentshot.png)
   
   *[Notice: So far, some main functions does not finish yet, such as function of regrstration, function of vote.]*
