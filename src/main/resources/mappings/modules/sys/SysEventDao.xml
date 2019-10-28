@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.event.event.dao.SysEventDao">
+    
+	<sql id="sysEventColumns">
+		a.id AS "id",
+		a.eventid AS "eventid",
+		a.eventname AS "eventname",
+		a.eventdescription AS "eventdescription",
+		a.due_date AS "dueDate",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="sysEventJoins">
+	</sql>
+    
+	<select id="get" resultType="SysEvent">
+		SELECT 
+			<include refid="sysEventColumns"/>
+		FROM sys_event a
+		<include refid="sysEventJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="SysEvent">
+		SELECT 
+			<include refid="sysEventColumns"/>
+		FROM sys_event a
+		<include refid="sysEventJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="eventid != null and eventid != ''">
+				AND a.eventid LIKE 
+					<if test="dbName == 'oracle'">'%'||#{eventid}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{eventid}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{eventid},'%')</if>
+			</if>
+			<if test="eventname != null and eventname != ''">
+				AND a.eventname LIKE 
+					<if test="dbName == 'oracle'">'%'||#{eventname}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{eventname}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{eventname},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="SysEvent">
+		SELECT 
+			<include refid="sysEventColumns"/>
+		FROM sys_event a
+		<include refid="sysEventJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO sys_event(
+			id,
+			eventid,
+			eventname,
+			eventdescription,
+			due_date,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{eventid},
+			#{eventname},
+			#{eventdescription},
+			#{dueDate},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE sys_event SET 	
+			eventid = #{eventid},
+			eventname = #{eventname},
+			eventdescription = #{eventdescription},
+			due_date = #{dueDate},
+			create_by = #{createBy.id},
+			create_date = #{createDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE sys_event SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
