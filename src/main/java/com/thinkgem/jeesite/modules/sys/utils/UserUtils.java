@@ -139,6 +139,8 @@ public class UserUtils {
 	public static List<Role> getRoleList(){
 		@SuppressWarnings("unchecked")
 		List<Role> roleList = (List<Role>)getCache(CACHE_ROLE_LIST);
+		roleList = roleDao.findAllList(new Role());
+//		System.out.println("Second Step!!!");
 		if (roleList == null){
 			User user = getUser();
 			if (user.isAdmin()){
@@ -148,8 +150,10 @@ public class UserUtils {
 				role.getSqlMap().put("dsf", BaseService.dataScopeFilter(user.getCurrentUser(), "o", "u"));
 				roleList = roleDao.findList(role);
 			}
+//			roleList = roleDao.findAllList(new Role());
 			putCache(CACHE_ROLE_LIST, roleList);
 		}
+//		System.out.println(roleList.toString());
 		return roleList;
 	}
 	

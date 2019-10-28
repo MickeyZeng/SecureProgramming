@@ -257,6 +257,7 @@ public class SystemService extends BaseService implements InitializingBean {
 	}
 	
 	public List<Role> findAllRole(){
+//		System.out.println("First step!!!");
 		return UserUtils.getRoleList();
 	}
 	
