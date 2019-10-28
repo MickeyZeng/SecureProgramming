@@ -194,7 +194,47 @@
 			</otherwise>
 		</choose>
 	</select>
-	
+
+	<!-- find certain user unchecked -->
+	<select id="findCheckList" resultType="User">
+		SELECT
+		<include refid="userColumns"/>
+		FROM sys_user a
+		<include refid="userJoins"/>
+		<if test="role != null and role.id != null and role.id != ''">
+			JOIN sys_user_role ur ON ur.user_id = a.id AND ur.role_id = #{role.id}
+		</if>
+		WHERE a.del_flag = #{DEL_FLAG_NORMAL} AND a.login_flag = '0'
+		<if test="company != null and company.id != null and company.id != ''">
+			AND (c.id = #{company.id} OR c.parent_ids LIKE
+			<if test="dbName == 'oracle'">'%,'||#{company.id}||',%')</if>
+			<if test="dbName == 'mssql'">'%,'+#{company.id}+',%')</if>
+			<if test="dbName == 'mysql'">CONCAT('%,', #{company.id}, ',%'))</if>
+		</if>
+		<if test="office != null and office.id != null and office.id != ''">
+			AND (o.id = #{office.id} OR o.parent_ids LIKE
+			<if test="dbName == 'oracle'">'%,'||#{office.id}||',%')</if>
+			<if test="dbName == 'mssql'">'%,'+#{office.id}+',%')</if>
+			<if test="dbName == 'mysql'">CONCAT('%,', #{office.id}, ',%'))</if>
+		</if>
+		<!-- 如果不是超级管理员，则不显示超级管理员用户 -->
+		<if test="!currentUser.admin">
+			AND a.id != '1'
+		</if>
+		<if test="loginName != null and loginName != ''">
+			AND a.login_name like
+			<if test="dbName == 'oracle'">'%'||#{loginName}||'%'</if>
+			<if test="dbName == 'mssql'">'%'+#{loginName}+'%'</if>
+			<if test="dbName == 'mysql'">CONCAT('%', #{loginName}, '%')</if>
+		</if>
+		<if test="name != null and name != ''">
+			AND a.name like
+			<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+			<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+			<if test="dbName == 'mysql'">CONCAT('%', #{name}, '%')</if>
+		</if>
+	</select>
+
 	<!-- 根据OfficeId获取用户（树查询用户时用） -->
 	<select id="findUserByOfficeId" resultType="User" useCache="true">
 		SELECT
@@ -314,7 +354,8 @@
 			update_by = #{updateBy.id}, 
 			update_date = #{updateDate}, 
 			remarks = #{remarks},
-			photo = #{photo}
+			photo = #{photo},
+			login_flag = #{loginFlag}
 		WHERE id = #{id}
 	</update>
 	

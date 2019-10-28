@@ -72,4 +72,11 @@ public interface UserDao extends CrudDao<User> {
 	 */
 	public int updateUserInfo(User user);
 
+	/**
+	 * Find the user which need to do a check
+	 * @param user
+	 * @return
+	 */
+	public List<User> findCheckList(User user);
+
 }
