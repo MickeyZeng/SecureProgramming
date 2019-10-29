@@ -25,7 +25,15 @@
 		<include refid="sysPartCandidateJoins"/>
 		WHERE a.id = #{id}
 	</select>
-	
+
+	<select id="getByPartyId" resultType="SysPartCandidate">
+		SELECT
+		<include refid="sysPartCandidateColumns"/>
+		FROM sys_part_candidate a
+		<include refid="sysPartCandidateJoins"/>
+		WHERE a.partyid = #{partyid}
+	</select>
+
 	<select id="findList" resultType="SysPartCandidate">
 		SELECT 
 			<include refid="sysPartCandidateColumns"/>

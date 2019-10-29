@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.party.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,9 @@ import com.thinkgem.jeesite.modules.party.dao.SysPartCandidateDao;
 @Transactional(readOnly = true)
 public class SysPartCandidateService extends CrudService<SysPartCandidateDao, SysPartCandidate> {
 
+	@Autowired
+	SysPartCandidateDao sysPartCandidateDao;
+
 	public SysPartCandidate get(String id) {
 		return super.get(id);
 	}
@@ -33,7 +37,13 @@ public class SysPartCandidateService extends CrudService<SysPartCandidateDao, Sy
 	public Page<SysPartCandidate> findPage(Page<SysPartCandidate> page, SysPartCandidate sysPartCandidate) {
 		return super.findPage(page, sysPartCandidate);
 	}
-	
+
+	public SysPartCandidate getByPartyId(SysPartCandidate sysPartCandidate){
+		System.out.println("Hello world");
+		System.out.println(sysPartCandidateDao.getByPartyId(sysPartCandidate).toString() + "Fuck you !!1");
+		return sysPartCandidateDao.getByPartyId(sysPartCandidate);
+	}
+
 	@Transactional(readOnly = false)
 	public void save(SysPartCandidate sysPartCandidate) {
 		super.save(sysPartCandidate);
