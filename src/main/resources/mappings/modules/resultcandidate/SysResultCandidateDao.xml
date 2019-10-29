@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.resultcandidate.dao.SysResultCandidateDao">
+    
+	<sql id="sysResultCandidateColumns">
+		a.id AS "id",
+		a.candidateid AS "candidateid",
+		a.eventid AS "eventid",
+		a.result AS "result",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="sysResultCandidateJoins">
+	</sql>
+    
+	<select id="get" resultType="SysResultCandidate">
+		SELECT 
+			<include refid="sysResultCandidateColumns"/>
+		FROM sys_result_candidate a
+		<include refid="sysResultCandidateJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="SysResultCandidate">
+		SELECT 
+			<include refid="sysResultCandidateColumns"/>
+		FROM sys_result_candidate a
+		<include refid="sysResultCandidateJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="candidateid != null and candidateid != ''">
+				AND a.candidateid LIKE 
+					<if test="dbName == 'oracle'">'%'||#{candidateid}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{candidateid}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{candidateid},'%')</if>
+			</if>
+			<if test="eventid != null and eventid != ''">
+				AND a.eventid LIKE 
+					<if test="dbName == 'oracle'">'%'||#{eventid}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{eventid}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{eventid},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="SysResultCandidate">
+		SELECT 
+			<include refid="sysResultCandidateColumns"/>
+		FROM sys_result_candidate a
+		<include refid="sysResultCandidateJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO sys_result_candidate(
+			id,
+			candidateid,
+			eventid,
+			result,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{candidateid},
+			#{eventid},
+			#{result},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE sys_result_candidate SET 	
+			candidateid = #{candidateid},
+			eventid = #{eventid},
+			result = #{result},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE sys_result_candidate SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

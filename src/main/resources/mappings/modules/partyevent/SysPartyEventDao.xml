@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.partyevent.dao.SysPartyEventDao">
+    
+	<sql id="sysPartyEventColumns">
+		a.id AS "id",
+		a.partyid AS "partyid",
+		a.eventid AS "eventid",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="sysPartyEventJoins">
+	</sql>
+    
+	<select id="get" resultType="SysPartyEvent">
+		SELECT 
+			<include refid="sysPartyEventColumns"/>
+		FROM sys_party_event a
+		<include refid="sysPartyEventJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="SysPartyEvent">
+		SELECT 
+			<include refid="sysPartyEventColumns"/>
+		FROM sys_party_event a
+		<include refid="sysPartyEventJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="partyid != null and partyid != ''">
+				AND a.partyid = #{partyid}
+			</if>
+			<if test="eventid != null and eventid != ''">
+				AND a.eventid = #{eventid}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="SysPartyEvent">
+		SELECT 
+			<include refid="sysPartyEventColumns"/>
+		FROM sys_party_event a
+		<include refid="sysPartyEventJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO sys_party_event(
+			id,
+			partyid,
+			eventid,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{partyid},
+			#{eventid},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE sys_party_event SET 	
+			partyid = #{partyid},
+			eventid = #{eventid},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE sys_party_event SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

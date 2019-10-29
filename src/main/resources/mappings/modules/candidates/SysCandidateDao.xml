@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.candidates.dao.SysCandidateDao">
+    
+	<sql id="sysCandidateColumns">
+		a.id AS "id",
+		a.candidateid AS "candidateid",
+		a.candidatename AS "candidatename",
+		a.partyid AS "partyid",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="sysCandidateJoins">
+	</sql>
+    
+	<select id="get" resultType="SysCandidate">
+		SELECT 
+			<include refid="sysCandidateColumns"/>
+		FROM sys_candidate a
+		<include refid="sysCandidateJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="SysCandidate">
+		SELECT 
+			<include refid="sysCandidateColumns"/>
+		FROM sys_candidate a
+		<include refid="sysCandidateJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="candidateid != null and candidateid != ''">
+				AND a.candidateid LIKE 
+					<if test="dbName == 'oracle'">'%'||#{candidateid}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{candidateid}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{candidateid},'%')</if>
+			</if>
+			<if test="candidatename != null and candidatename != ''">
+				AND a.candidatename LIKE 
+					<if test="dbName == 'oracle'">'%'||#{candidatename}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{candidatename}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{candidatename},'%')</if>
+			</if>
+			<if test="partyid != null and partyid != ''">
+				AND a.partyid LIKE 
+					<if test="dbName == 'oracle'">'%'||#{partyid}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{partyid}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{partyid},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="SysCandidate">
+		SELECT 
+			<include refid="sysCandidateColumns"/>
+		FROM sys_candidate a
+		<include refid="sysCandidateJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO sys_candidate(
+			id,
+			candidateid,
+			candidatename,
+			partyid,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{candidateid},
+			#{candidatename},
+			#{partyid},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE sys_candidate SET 	
+			candidateid = #{candidateid},
+			candidatename = #{candidatename},
+			partyid = #{partyid},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE sys_candidate SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
