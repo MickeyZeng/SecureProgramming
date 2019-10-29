@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.party.dao.SysPartCandidateDao">
+    
+	<sql id="sysPartCandidateColumns">
+		a.id AS "id",
+		a.partyid AS "partyid",
+		a.partyname AS "partyname",
+		a.partydescription AS "partydescription",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="sysPartCandidateJoins">
+	</sql>
+    
+	<select id="get" resultType="SysPartCandidate">
+		SELECT 
+			<include refid="sysPartCandidateColumns"/>
+		FROM sys_part_candidate a
+		<include refid="sysPartCandidateJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="SysPartCandidate">
+		SELECT 
+			<include refid="sysPartCandidateColumns"/>
+		FROM sys_part_candidate a
+		<include refid="sysPartCandidateJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="partyid != null and partyid != ''">
+				AND a.partyid LIKE 
+					<if test="dbName == 'oracle'">'%'||#{partyid}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{partyid}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{partyid},'%')</if>
+			</if>
+			<if test="partyname != null and partyname != ''">
+				AND a.partyname LIKE 
+					<if test="dbName == 'oracle'">'%'||#{partyname}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{partyname}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{partyname},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="SysPartCandidate">
+		SELECT 
+			<include refid="sysPartCandidateColumns"/>
+		FROM sys_part_candidate a
+		<include refid="sysPartCandidateJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO sys_part_candidate(
+			id,
+			partyid,
+			partyname,
+			partydescription,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{partyid},
+			#{partyname},
+			#{partydescription},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE sys_part_candidate SET 	
+			partyid = #{partyid},
+			partyname = #{partyname},
+			partydescription = #{partydescription},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE sys_part_candidate SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
