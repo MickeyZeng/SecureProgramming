@@ -80,7 +80,7 @@ public class SysResultPartyController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/resultparty/sysResultParty/?repage";
 	}
 
-	@RequiresPermissions("resultparty:sysResultParty:view")
+
 	@RequestMapping(value = "vote")
 	public String vote(SysResultParty sysResultParty, Model model, RedirectAttributes redirectAttributes) {
 		String partyID = sysResultParty.getId().split(" ")[0];

@@ -69,7 +69,7 @@
 					${sysCandidate.remarks}
 				</td>
 				<td>
-    				<a href="${ctx}/candidates/sysCandidate/vote?id=${sysCandidate.id}">投票</a>
+    				<a href="${ctx}/resultcandidate/sysResultCandidate/vote?id=${sysCandidate.id}+${eventID}+${size}">投票</a>
 				</td>
 			</tr>
 		</c:forEach>

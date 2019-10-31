@@ -68,10 +68,9 @@
 				<td>
 					${sysCandidate.remarks}
 				</td>
-				<shiro:hasPermission name="candidates:sysCandidate:edit"><td>
-    				<a href="${ctx}/candidates/sysCandidate/form?id=${sysCandidate.id}">修改</a>
-					<a href="${ctx}/candidates/sysCandidate/delete?id=${sysCandidate.id}" onclick="return confirmx('确认要删除该Candidates吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+				<td>
+    				<a href="${ctx}/resultcandidate/sysResultCandidate/vote?id=${sysCandidate.id}+${eventID}">投票</a>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

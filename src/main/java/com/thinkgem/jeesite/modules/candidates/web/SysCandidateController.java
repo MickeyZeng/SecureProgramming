@@ -101,9 +101,16 @@ public class SysCandidateController extends BaseController {
 
         SysCandidate sysCandidate = new SysCandidate();
         SysPartCandidate sysPartCandidate = new SysPartCandidate();
+        String size;
+        if (sysEvent.getId().split(" ").length == 1) {
+            size = "";
+        }else{
+        	size = sysEvent.getId().split(" ")[1];
+		}
+
 
         //Got party according party ID
-        List<String> partyID = sysPartyEventService.findPartyID(sysEvent.getId());
+        List<String> partyID = sysPartyEventService.findPartyID(sysEvent.getId().split(" ")[0]);
         List<String> partyName = new ArrayList<String>();
         List<SysPartCandidate> partyList = sysPartCandidateService.findList(sysPartCandidate);
 
@@ -137,7 +144,13 @@ public class SysCandidateController extends BaseController {
         }
 
         resultPage.setList(results);
-		model.addAttribute("page", resultPage);
+        model.addAttribute("page", resultPage);
+        model.addAttribute("eventID", sysEvent.getId().split(" ")[0]);
+        if (size.equals(null)) {
+			model.addAttribute("size", results.size());
+		}else{
+        	model.addAttribute("size", size);
+		}
 
         return "modules/candidates/eventToPerson";
     }

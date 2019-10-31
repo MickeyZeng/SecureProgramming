@@ -24,6 +24,7 @@ import com.thinkgem.jeesite.modules.resultcandidate.service.SysResultCandidateSe
 
 /**
  * resultCandidateController
+ *
  * @author ZJQ
  * @version 2019-10-29
  */
@@ -31,53 +32,82 @@ import com.thinkgem.jeesite.modules.resultcandidate.service.SysResultCandidateSe
 @RequestMapping(value = "${adminPath}/resultcandidate/sysResultCandidate")
 public class SysResultCandidateController extends BaseController {
 
-	@Autowired
-	private SysResultCandidateService sysResultCandidateService;
-	
-	@ModelAttribute
-	public SysResultCandidate get(@RequestParam(required=false) String id) {
-		SysResultCandidate entity = null;
-		if (StringUtils.isNotBlank(id)){
-			entity = sysResultCandidateService.get(id);
-		}
-		if (entity == null){
-			entity = new SysResultCandidate();
-		}
-		return entity;
-	}
-	
-	@RequiresPermissions("resultcandidate:sysResultCandidate:view")
-	@RequestMapping(value = {"list", ""})
-	public String list(SysResultCandidate sysResultCandidate, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<SysResultCandidate> page = sysResultCandidateService.findPage(new Page<SysResultCandidate>(request, response), sysResultCandidate); 
-		model.addAttribute("page", page);
-		return "modules/resultcandidate/sysResultCandidateList";
-	}
+    @Autowired
+    private SysResultCandidateService sysResultCandidateService;
 
-	@RequiresPermissions("resultcandidate:sysResultCandidate:view")
-	@RequestMapping(value = "form")
-	public String form(SysResultCandidate sysResultCandidate, Model model) {
-		model.addAttribute("sysResultCandidate", sysResultCandidate);
-		return "modules/resultcandidate/sysResultCandidateForm";
-	}
 
-	@RequiresPermissions("resultcandidate:sysResultCandidate:edit")
-	@RequestMapping(value = "save")
-	public String save(SysResultCandidate sysResultCandidate, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, sysResultCandidate)){
-			return form(sysResultCandidate, model);
-		}
-		sysResultCandidateService.save(sysResultCandidate);
-		addMessage(redirectAttributes, "保存resultCandidate成功");
-		return "redirect:"+Global.getAdminPath()+"/resultcandidate/sysResultCandidate/?repage";
-	}
-	
-	@RequiresPermissions("resultcandidate:sysResultCandidate:edit")
-	@RequestMapping(value = "delete")
-	public String delete(SysResultCandidate sysResultCandidate, RedirectAttributes redirectAttributes) {
-		sysResultCandidateService.delete(sysResultCandidate);
-		addMessage(redirectAttributes, "删除resultCandidate成功");
-		return "redirect:"+Global.getAdminPath()+"/resultcandidate/sysResultCandidate/?repage";
-	}
+    @ModelAttribute
+    public SysResultCandidate get(@RequestParam(required = false) String id) {
+        SysResultCandidate entity = null;
+        if (StringUtils.isNotBlank(id)) {
+            entity = sysResultCandidateService.get(id);
+        }
+        if (entity == null) {
+            entity = new SysResultCandidate();
+        }
+        return entity;
+    }
+
+    @RequiresPermissions("resultcandidate:sysResultCandidate:view")
+    @RequestMapping(value = {"list", ""})
+    public String list(SysResultCandidate sysResultCandidate, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<SysResultCandidate> page = sysResultCandidateService.findPage(new Page<SysResultCandidate>(request, response), sysResultCandidate);
+        model.addAttribute("page", page);
+        return "modules/resultcandidate/sysResultCandidateList";
+    }
+
+    @RequiresPermissions("resultcandidate:sysResultCandidate:view")
+    @RequestMapping(value = "form")
+    public String form(SysResultCandidate sysResultCandidate, Model model) {
+        model.addAttribute("sysResultCandidate", sysResultCandidate);
+        return "modules/resultcandidate/sysResultCandidateForm";
+    }
+
+    @RequiresPermissions("resultcandidate:sysResultCandidate:edit")
+    @RequestMapping(value = "save")
+    public String save(SysResultCandidate sysResultCandidate, Model model, RedirectAttributes redirectAttributes) {
+        if (!beanValidator(model, sysResultCandidate)) {
+            return form(sysResultCandidate, model);
+        }
+        sysResultCandidateService.save(sysResultCandidate);
+        addMessage(redirectAttributes, "保存resultCandidate成功");
+        return "redirect:" + Global.getAdminPath() + "/resultcandidate/sysResultCandidate/?repage";
+    }
+
+    @RequiresPermissions("resultcandidate:sysResultCandidate:edit")
+    @RequestMapping(value = "delete")
+    public String delete(SysResultCandidate sysResultCandidate, RedirectAttributes redirectAttributes) {
+        sysResultCandidateService.delete(sysResultCandidate);
+        addMessage(redirectAttributes, "删除resultCandidate成功");
+        return "redirect:" + Global.getAdminPath() + "/resultcandidate/sysResultCandidate/?repage";
+    }
+
+    @RequestMapping(value = "vote")
+    public String vote(SysResultCandidate sysResultCandidate, Model model, RedirectAttributes redirectAttributes) {
+        String personID = sysResultCandidate.getId().split(" ")[0];
+        String eventID = sysResultCandidate.getId().split(" ")[1];
+        String result = sysResultCandidate.getId().split(" ")[2];
+
+        sysResultCandidate.setId(personID + eventID);
+        sysResultCandidate.setEventid(eventID);
+        sysResultCandidate.setCandidateid(personID);
+        sysResultCandidate.setIsNewRecord(true);
+
+        //For test
+        if (sysResultCandidateService.get(personID + eventID) == null) {
+            sysResultCandidate.setResult(result);
+            result = Integer.toString(Integer.valueOf(result) - 1);
+//		System.out.println(partyID + "%%%%%%%%%%%%%%%%" + eventID);
+            sysResultCandidateService.save(sysResultCandidate);
+        } else {
+            addMessage(redirectAttributes, "You cannot vote same party.");
+        }
+        if (Integer.valueOf(result) > 1) {
+			return "redirect:" + Global.getAdminPath() + "/event/sysEvent/eTOp?id="+eventID+" "+result;
+        } else {
+            return "redirect:" + Global.getAdminPath() + "/event/sysEvent/displayPerson";
+        }
+//		addMessage(redirectAttributes, "保存resultParty成功");
+    }
 
 }
