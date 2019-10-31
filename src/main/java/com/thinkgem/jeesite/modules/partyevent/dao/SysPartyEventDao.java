@@ -7,6 +7,8 @@ import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.partyevent.entity.SysPartyEvent;
 
+import java.util.List;
+
 /**
  * Party-eventDAO接口
  * @author ZJQ
@@ -14,5 +16,5 @@ import com.thinkgem.jeesite.modules.partyevent.entity.SysPartyEvent;
  */
 @MyBatisDao
 public interface SysPartyEventDao extends CrudDao<SysPartyEvent> {
-	
+    public List<SysPartyEvent> findPartyID(String eventid);
 }

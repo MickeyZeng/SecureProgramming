@@ -24,6 +24,14 @@
 		<include refid="sysPartyEventJoins"/>
 		WHERE a.id = #{id}
 	</select>
+
+	<select id="findPartyID" resultType="SysPartyEvent">
+		SELECT
+		<include refid="sysPartyEventColumns"/>
+		FROM sys_party_event a
+		<include refid="sysPartyEventJoins"/>
+		WHERE a.eventid = #{eventid}
+	</select>
 	
 	<select id="findList" resultType="SysPartyEvent">
 		SELECT 

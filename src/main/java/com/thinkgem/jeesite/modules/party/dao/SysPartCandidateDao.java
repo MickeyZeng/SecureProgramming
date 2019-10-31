@@ -15,4 +15,6 @@ import com.thinkgem.jeesite.modules.party.entity.SysPartCandidate;
 @MyBatisDao
 public interface SysPartCandidateDao extends CrudDao<SysPartCandidate> {
     public SysPartCandidate getByPartyId(SysPartCandidate sysPartCandidate);
+
+
 }

@@ -80,4 +80,27 @@ public class SysResultPartyController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/resultparty/sysResultParty/?repage";
 	}
 
+	@RequiresPermissions("resultparty:sysResultParty:view")
+	@RequestMapping(value = "vote")
+	public String vote(SysResultParty sysResultParty, Model model, RedirectAttributes redirectAttributes) {
+		String partyID = sysResultParty.getId().split(" ")[0];
+		String eventID = sysResultParty.getId().split(" ")[1];
+
+		sysResultParty.setId(partyID+eventID);
+		sysResultParty.setEventid(eventID);
+		sysResultParty.setPartyid(partyID);
+		sysResultParty.setIsNewRecord(true);
+
+		//For test
+		if(sysResultPartyService.get(partyID+eventID) == null){
+			sysResultParty.setResult("1");
+//		System.out.println(partyID + "%%%%%%%%%%%%%%%%" + eventID);
+			sysResultPartyService.save(sysResultParty);
+		}else{
+			addMessage(redirectAttributes, "You cannot vote same party.");
+		}
+
+//		addMessage(redirectAttributes, "保存resultParty成功");
+		return "redirect:"+Global.getAdminPath()+"/event/sysEvent/display";
+	}
 }

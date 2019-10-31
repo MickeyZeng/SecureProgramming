@@ -17,6 +17,7 @@
 	</script>
 </head>
 <body>
+
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/party/sysPartCandidate/">Party列表</a></li>
 		<shiro:hasPermission name="party:sysPartCandidate:edit"><li><a href="${ctx}/party/sysPartCandidate/form">Party添加</a></li></shiro:hasPermission>

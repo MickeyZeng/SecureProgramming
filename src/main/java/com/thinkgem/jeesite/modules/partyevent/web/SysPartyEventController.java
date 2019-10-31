@@ -57,6 +57,8 @@ public class SysPartyEventController extends BaseController {
 	@RequiresPermissions("partyevent:sysPartyEvent:view")
 	@RequestMapping(value = "form")
 	public String form(SysPartyEvent sysPartyEvent, Model model) {
+		System.out.println(sysPartyEvent.getEventid() + "AM I right?????");
+		System.out.println(sysPartyEvent.getId() + "TEST man !!!");
 		model.addAttribute("sysPartyEvent", sysPartyEvent);
 		return "modules/partyevent/sysPartyEventForm";
 	}
@@ -67,9 +69,12 @@ public class SysPartyEventController extends BaseController {
 		if (!beanValidator(model, sysPartyEvent)){
 			return form(sysPartyEvent, model);
 		}
+		sysPartyEvent.setIsNewRecord(true);
+		sysPartyEvent.setId(sysPartyEvent.getEventid() + sysPartyEvent.getPartyid());
 		sysPartyEventService.save(sysPartyEvent);
 		addMessage(redirectAttributes, "保存Party-event成功");
-		return "redirect:"+Global.getAdminPath()+"/partyevent/sysPartyEvent/?repage";
+//		return "redirect:"+Global.getAdminPath()+"/partyevent/sysPartyEvent/?repage";
+		return "redirect:" +Global.getAdminPath()+ "/event/sysEvent";
 	}
 	
 	@RequiresPermissions("partyevent:sysPartyEvent:edit")

@@ -51,7 +51,8 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="sysEvent">
 			<tr>
-				<td><a href="${ctx}/event/sysEvent/form?id=${sysEvent.id}">
+<%--				<td><a href="${ctx}/event/sysEvent/form?id=${sysEvent.id}">--%>
+				<td><a href="${ctx}/partyevent/sysPartyEvent/form?eventid=${sysEvent.id}">
 					${sysEvent.id}
 				</a></td>
 				<td>

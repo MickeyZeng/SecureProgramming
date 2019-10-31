@@ -6,6 +6,8 @@ package com.thinkgem.jeesite.modules.party.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.event.entity.SysEvent;
+import com.thinkgem.jeesite.modules.partyevent.service.SysPartyEventService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.party.entity.SysPartCandidate;
 import com.thinkgem.jeesite.modules.party.service.SysPartCandidateService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * partyController
  * @author ZJQ
@@ -33,7 +38,10 @@ public class SysPartCandidateController extends BaseController {
 
 	@Autowired
 	private SysPartCandidateService sysPartCandidateService;
-	
+
+	@Autowired
+	private SysPartyEventService sysPartyEventService;
+
 	@ModelAttribute
 	public SysPartCandidate get(@RequestParam(required=false) String id) {
 		SysPartCandidate entity = null;
@@ -81,4 +89,35 @@ public class SysPartCandidateController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/party/sysPartCandidate/?repage";
 	}
 
+	@RequestMapping(value = "eTOp")
+	public String eventToParty(SysEvent sysEvent, HttpServletRequest request, HttpServletResponse response, Model model) {
+		System.out.println(sysEvent.getId() + "DAMN IT");
+		SysPartCandidate sysPartCandidate = new SysPartCandidate();
+
+		//Got party according party ID
+		List<String> partyID = sysPartyEventService.findPartyID(sysEvent.getId());
+
+		//Got the party name
+		Page<SysPartCandidate> page = sysPartCandidateService.findPage(new Page<SysPartCandidate>(request, response), sysPartCandidate);
+		Page<SysPartCandidate> resultPage = new Page<SysPartCandidate>();
+		List<SysPartCandidate> sysPartCandidates = page.getList();
+		List<SysPartCandidate> resultParty = new ArrayList<SysPartCandidate>();
+		for (int i = 0; i < sysPartCandidates.size(); i++) {
+			for (int j = 0; j < partyID.size(); j++) {
+				if(sysPartCandidates.get(i).getPartyid().equals(partyID.get(j))){
+					resultParty.add(sysPartCandidates.get(i));
+				}
+			}
+		}
+
+		System.out.println(resultParty.toString() + "************");
+
+		resultPage.setList(resultParty);
+		model.addAttribute("page", resultPage);
+		model.addAttribute("eventID", sysEvent.getId());
+//		Page<SysEvent> page = sysEventService.findPage(new Page<SysEvent>(request, response), sysEvent);
+//		model.addAttribute("page", page);
+		System.out.println("************************");
+		return "modules/party/eventToParty";
+	}
 }
