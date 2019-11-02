@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.resultparty.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -84,23 +85,36 @@ public class SysResultPartyController extends BaseController {
 	@RequestMapping(value = "vote")
 	public String vote(SysResultParty sysResultParty, Model model, RedirectAttributes redirectAttributes) {
 		String partyID = sysResultParty.getId().split(" ")[0];
+		char[] c = partyID.toCharArray();
+		String party = "";
 		String eventID = sysResultParty.getId().split(" ")[1];
+		String size = sysResultParty.getId().split(" ")[2];
 
-		sysResultParty.setId(partyID+eventID);
+		for (int i = 0; i < c.length/2; i++) {
+			party = c[i] + party;
+		}
+
+		sysResultParty.setId(party+eventID+UserUtils.getUser().getId());
 		sysResultParty.setEventid(eventID);
 		sysResultParty.setPartyid(partyID);
 		sysResultParty.setIsNewRecord(true);
 
 		//For test
-		if(sysResultPartyService.get(partyID+eventID) == null){
-			sysResultParty.setResult("1");
+		if(sysResultPartyService.get(party+eventID+UserUtils.getUser().getId()) == null){
+			sysResultParty.setResult(size);
+			size = Integer.toString(Integer.valueOf(size) - 1);
 //		System.out.println(partyID + "%%%%%%%%%%%%%%%%" + eventID);
 			sysResultPartyService.save(sysResultParty);
 		}else{
 			addMessage(redirectAttributes, "You cannot vote same party.");
 		}
 
+		if(Integer.valueOf(size) > 1){
+			System.out.println("Is it here?????");
+			return "redirect:" + Global.getAdminPath() + "/party/sysPartCandidate/eTOp?id="+eventID+" "+size;
+		}else{
+			return "redirect:"+Global.getAdminPath()+"/event/sysEvent/display";
+		}
 //		addMessage(redirectAttributes, "保存resultParty成功");
-		return "redirect:"+Global.getAdminPath()+"/event/sysEvent/display";
 	}
 }

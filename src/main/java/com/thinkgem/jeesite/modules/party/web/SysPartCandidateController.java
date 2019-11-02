@@ -91,11 +91,17 @@ public class SysPartCandidateController extends BaseController {
 
 	@RequestMapping(value = "eTOp")
 	public String eventToParty(SysEvent sysEvent, HttpServletRequest request, HttpServletResponse response, Model model) {
-		System.out.println(sysEvent.getId() + "DAMN IT");
+		System.out.println("HJello MAN ))))))");
 		SysPartCandidate sysPartCandidate = new SysPartCandidate();
+		String size;
+		if (sysEvent.getId().split(" ").length == 1) {
+			size = "";
+		}else{
+			size = sysEvent.getId().split(" ")[1];
+		}
 
 		//Got party according party ID
-		List<String> partyID = sysPartyEventService.findPartyID(sysEvent.getId());
+		List<String> partyID = sysPartyEventService.findPartyID(sysEvent.getId().split(" ")[0]);
 
 		//Got the party name
 		Page<SysPartCandidate> page = sysPartCandidateService.findPage(new Page<SysPartCandidate>(request, response), sysPartCandidate);
@@ -103,18 +109,29 @@ public class SysPartCandidateController extends BaseController {
 		List<SysPartCandidate> sysPartCandidates = page.getList();
 		List<SysPartCandidate> resultParty = new ArrayList<SysPartCandidate>();
 		for (int i = 0; i < sysPartCandidates.size(); i++) {
+			System.out.println("????$$$$$");
 			for (int j = 0; j < partyID.size(); j++) {
+				System.out.println(sysPartCandidates.get(i).getPartyid() + "((((" + partyID.get(j));
+				System.out.println("@@@@@@@@@");
 				if(sysPartCandidates.get(i).getPartyid().equals(partyID.get(j))){
+					System.out.println("@@@@@#####");
 					resultParty.add(sysPartCandidates.get(i));
 				}
 			}
 		}
 
-		System.out.println(resultParty.toString() + "************");
+		if (size == "" || size.length() == 0) {
+			System.out.println("Size!!!!!1111111");
+			model.addAttribute("sizes", resultParty.size());
+		}else{
+			System.out.println("Size!!!!!22222222");
+			System.out.println(size);
+			model.addAttribute("sizes", size);
+		}
 
 		resultPage.setList(resultParty);
 		model.addAttribute("page", resultPage);
-		model.addAttribute("eventID", sysEvent.getId());
+		model.addAttribute("eventID", sysEvent.getId().split(" ")[0]);
 //		Page<SysEvent> page = sysEventService.findPage(new Page<SysEvent>(request, response), sysEvent);
 //		model.addAttribute("page", page);
 		System.out.println("************************");

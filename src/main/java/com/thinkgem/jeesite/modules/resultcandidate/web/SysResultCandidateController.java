@@ -86,29 +86,35 @@ public class SysResultCandidateController extends BaseController {
     @RequestMapping(value = "vote")
     public String vote(SysResultCandidate sysResultCandidate, Model model, RedirectAttributes redirectAttributes) {
 
-        String[] test = sysResultCandidate.getId().split(" ");
+//        String[] test = sysResultCandidate.getId().split(" ");
 //        for (int i = 0; i < test.length; i++) {
 //            System.out.println("************(((())))");
 //            System.out.println(test[i]);
 //        }
 
         String personID = sysResultCandidate.getId().split(" ")[0];
+        char[] c = personID.toCharArray();
+        String person = "";
         String eventID = sysResultCandidate.getId().split(" ")[1];
         String result = sysResultCandidate.getId().split(" ")[2];
 
-        sysResultCandidate.setId(personID + eventID + UserUtils.getUser().getId());
+        for (int i = 0; i < c.length/2; i++) {
+            person = person + c[i];
+        }
+
+        sysResultCandidate.setId(person + eventID + UserUtils.getUser().getId());
         sysResultCandidate.setEventid(eventID);
         sysResultCandidate.setCandidateid(personID);
         sysResultCandidate.setIsNewRecord(true);
 
         //For test
-        if (sysResultCandidateService.get(personID + eventID + UserUtils.getUser().getId()) == null) {
+        if (sysResultCandidateService.get(person + eventID + UserUtils.getUser().getId()) == null) {
             sysResultCandidate.setResult(result);
             result = Integer.toString(Integer.valueOf(result) - 1);
 //		System.out.println(partyID + "%%%%%%%%%%%%%%%%" + eventID);
             sysResultCandidateService.save(sysResultCandidate);
         } else {
-            addMessage(redirectAttributes, "You cannot vote same party.");
+            addMessage(redirectAttributes, "You cannot vote same Candidate.");
         }
         if (Integer.valueOf(result) > 1) {
             System.out.println("Is it here?????");

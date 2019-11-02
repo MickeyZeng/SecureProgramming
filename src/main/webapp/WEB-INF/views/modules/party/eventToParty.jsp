@@ -17,7 +17,7 @@
 	</script>
 </head>
 <body>
-	<h1>${eventID}</h1>
+<%--	<h1>${eventID}</h1>--%>
 	<ul class="nav nav-tabs">
 		<li class="active">Party列表</li>
 		<shiro:hasPermission name="party:sysPartCandidate:edit"><li><a href="${ctx}/party/sysPartCandidate/form">Party添加</a></li></shiro:hasPermission>
@@ -59,7 +59,7 @@
 					${sysPartCandidate.partydescription}
 				</td>
 				<td>
-    				<a href="${ctx}/resultparty/sysResultParty/vote?id=${sysPartCandidate.id}+${eventID}">投票</a>
+    				<a href="${ctx}/resultparty/sysResultParty/vote?id=${sysPartCandidate.id}+${eventID}+${sizes}">投票</a>
 				</td>
 			</tr>
 		</c:forEach>
