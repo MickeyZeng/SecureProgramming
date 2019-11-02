@@ -107,6 +107,7 @@ public class SysEventController extends BaseController {
 	@RequiresPermissions("event:sysEvent:view")
 	@RequestMapping(value = "displayPerson")
 	public String displayPerson(SysEvent sysEvent, HttpServletRequest request, HttpServletResponse response, Model model) {
+		System.out.println("R u here????");
 		Page<SysEvent> page = sysEventService.findPage(new Page<SysEvent>(request, response), sysEvent);
 		model.addAttribute("page", page);
 		return "modules/event/sysEventDisplayPerson";

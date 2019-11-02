@@ -97,8 +97,6 @@ public class SysCandidateController extends BaseController {
 
     @RequestMapping(value = "eTOp")
     public String eventToPerson(SysEvent sysEvent, HttpServletRequest request, HttpServletResponse response, Model model) {
-//		System.out.println(sysEvent.getId() + "DAMN IT");
-
         SysCandidate sysCandidate = new SysCandidate();
         SysPartCandidate sysPartCandidate = new SysPartCandidate();
         String size;
@@ -115,7 +113,7 @@ public class SysCandidateController extends BaseController {
         List<SysPartCandidate> partyList = sysPartCandidateService.findList(sysPartCandidate);
 
 
-        System.out.println("!!!!!!!" + partyID.toString() + "*********");
+//        System.out.println("!!!!!!!" + partyID.toString() + "*********");
 
         for (int i = 0; i < partyID.size(); i++) {
             for (int j = 0; j < partyList.size(); j++) {
@@ -135,9 +133,9 @@ public class SysCandidateController extends BaseController {
         sysCandidates = page.getList();
         for (int i = 0; i < sysCandidates.size(); i++) {
             for (int j = 0; j < partyName.size(); j++) {
-                System.out.println(sysCandidates.get(i).getPartyid() + "#######" + partyName.get(j));
+//                System.out.println(sysCandidates.get(i).getPartyid() + "#######" + partyName.get(j));
                 if (sysCandidates.get(i).getPartyid().equals(partyName.get(j))) {
-                    System.out.println(sysCandidates.get(i).getCandidatename() + "^^^^^^^^^^");
+//                    System.out.println(sysCandidates.get(i).getCandidatename() + "^^^^^^^^^^");
                     results.add(sysCandidates.get(i));
                 }
             }
@@ -146,10 +144,13 @@ public class SysCandidateController extends BaseController {
         resultPage.setList(results);
         model.addAttribute("page", resultPage);
         model.addAttribute("eventID", sysEvent.getId().split(" ")[0]);
-        if (size.equals(null)) {
-			model.addAttribute("size", results.size());
+        if (size == "" || size.length() == 0) {
+            System.out.println("Size!!!!!1111111");
+			model.addAttribute("sizes", results.size());
 		}else{
-        	model.addAttribute("size", size);
+            System.out.println("Size!!!!!22222222");
+            System.out.println(size);
+        	model.addAttribute("sizes", size);
 		}
 
         return "modules/candidates/eventToPerson";

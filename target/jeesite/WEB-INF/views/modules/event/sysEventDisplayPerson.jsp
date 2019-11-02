@@ -50,6 +50,7 @@
 			<tr>
 <%--				<td><a href="${ctx}/event/sysEvent/form?id=${sysEvent.id}">--%>
 				<td><a href="${ctx}/candidates/sysCandidate/eTOp?id=${sysEvent.id}">
+<%--				<td><a href="${ctx}/candidates/sysCandidate/eTOp?id=${sysEvent.id}}">--%>
 					${sysEvent.id}
 				</a></td>
 				<td>

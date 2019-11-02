@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.resultcandidate.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -84,17 +85,24 @@ public class SysResultCandidateController extends BaseController {
 
     @RequestMapping(value = "vote")
     public String vote(SysResultCandidate sysResultCandidate, Model model, RedirectAttributes redirectAttributes) {
+
+        String[] test = sysResultCandidate.getId().split(" ");
+//        for (int i = 0; i < test.length; i++) {
+//            System.out.println("************(((())))");
+//            System.out.println(test[i]);
+//        }
+
         String personID = sysResultCandidate.getId().split(" ")[0];
         String eventID = sysResultCandidate.getId().split(" ")[1];
         String result = sysResultCandidate.getId().split(" ")[2];
 
-        sysResultCandidate.setId(personID + eventID);
+        sysResultCandidate.setId(personID + eventID + UserUtils.getUser().getId());
         sysResultCandidate.setEventid(eventID);
         sysResultCandidate.setCandidateid(personID);
         sysResultCandidate.setIsNewRecord(true);
 
         //For test
-        if (sysResultCandidateService.get(personID + eventID) == null) {
+        if (sysResultCandidateService.get(personID + eventID + UserUtils.getUser().getId()) == null) {
             sysResultCandidate.setResult(result);
             result = Integer.toString(Integer.valueOf(result) - 1);
 //		System.out.println(partyID + "%%%%%%%%%%%%%%%%" + eventID);
@@ -103,7 +111,8 @@ public class SysResultCandidateController extends BaseController {
             addMessage(redirectAttributes, "You cannot vote same party.");
         }
         if (Integer.valueOf(result) > 1) {
-			return "redirect:" + Global.getAdminPath() + "/event/sysEvent/eTOp?id="+eventID+" "+result;
+            System.out.println("Is it here?????");
+			return "redirect:" + Global.getAdminPath() + "/candidates/sysCandidate/eTOp?id="+eventID+" "+result;
         } else {
             return "redirect:" + Global.getAdminPath() + "/event/sysEvent/displayPerson";
         }
