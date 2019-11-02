@@ -6,6 +6,8 @@ package com.thinkgem.jeesite.modules.resultparty.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.event.service.SysEventService;
+import com.thinkgem.jeesite.modules.party.service.SysPartCandidateService;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.resultparty.entity.SysResultParty;
 import com.thinkgem.jeesite.modules.resultparty.service.SysResultPartyService;
 
+import java.util.List;
+
 /**
  * resultPartyController
  * @author ZJQ
@@ -34,7 +38,14 @@ public class SysResultPartyController extends BaseController {
 
 	@Autowired
 	private SysResultPartyService sysResultPartyService;
-	
+
+	@Autowired
+	private SysEventService sysEventService;
+
+	@Autowired
+	private SysPartCandidateService sysPartCandidateService;
+
+
 	@ModelAttribute
 	public SysResultParty get(@RequestParam(required=false) String id) {
 		SysResultParty entity = null;
@@ -53,6 +64,33 @@ public class SysResultPartyController extends BaseController {
 		Page<SysResultParty> page = sysResultPartyService.findPage(new Page<SysResultParty>(request, response), sysResultParty); 
 		model.addAttribute("page", page);
 		return "modules/resultparty/sysResultPartyList";
+	}
+
+	@RequiresPermissions("resultparty:sysResultParty:view")
+	@RequestMapping(value = "calculate")
+	public String calculate(SysResultParty sysResultParty, HttpServletRequest request, HttpServletResponse response, Model model) {
+		Page<SysResultParty> page = sysResultPartyService.findPage(new Page<SysResultParty>(request, response), sysResultParty);
+		List<SysResultParty> resultParties = page.getList();
+		for (int i = 0; i < resultParties.size(); i++) {
+			for (int j = i + 1; j < resultParties.size(); j++) {
+				if(resultParties.get(i).getPartyid().equals(resultParties.get(j).getPartyid()) && resultParties.get(j).getEventid().equals(resultParties.get(j).getEventid())){
+					resultParties.get(i).setResult(Integer.toString(Integer.valueOf(resultParties.get(i).getResult()) + Integer.valueOf(resultParties.get(j).getResult())));
+					resultParties.remove(j);
+					j = j - 1;
+				}
+			}
+		}
+
+		for (int i = 0; i < resultParties.size(); i++) {
+			resultParties.get(i).setEventid(sysEventService.get(resultParties.get(i).getEventid()).getEventname());
+			resultParties.get(i).setPartyid(sysPartCandidateService.get(resultParties.get(i).getPartyid()).getPartyname());
+		}
+
+		Page<SysResultParty> resultPage  = new Page<SysResultParty>();
+		resultPage.setList(resultParties);
+
+		model.addAttribute("page", resultPage);
+		return "modules/resultparty/calculateResult";
 	}
 
 	@RequiresPermissions("resultparty:sysResultParty:view")
