@@ -6,6 +6,8 @@ package com.thinkgem.jeesite.modules.resultcandidate.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.candidates.service.SysCandidateService;
+import com.thinkgem.jeesite.modules.event.service.SysEventService;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.resultcandidate.entity.SysResultCandidate;
 import com.thinkgem.jeesite.modules.resultcandidate.service.SysResultCandidateService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * resultCandidateController
  *
@@ -35,6 +40,12 @@ public class SysResultCandidateController extends BaseController {
 
     @Autowired
     private SysResultCandidateService sysResultCandidateService;
+
+    @Autowired
+    private SysEventService sysEventService;
+
+    @Autowired
+    private SysCandidateService sysCandidateService;
 
 
     @ModelAttribute
@@ -55,6 +66,33 @@ public class SysResultCandidateController extends BaseController {
         Page<SysResultCandidate> page = sysResultCandidateService.findPage(new Page<SysResultCandidate>(request, response), sysResultCandidate);
         model.addAttribute("page", page);
         return "modules/resultcandidate/sysResultCandidateList";
+    }
+
+    @RequiresPermissions("resultcandidate:sysResultCandidate:view")
+    @RequestMapping(value = "calculate")
+    public String calculate(SysResultCandidate sysResultCandidate, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<SysResultCandidate> page = sysResultCandidateService.findPage(new Page<SysResultCandidate>(request, response), sysResultCandidate);
+        List<SysResultCandidate> resultCandidates = page.getList();
+        for (int i = 0; i < resultCandidates.size(); i++) {
+            for (int j = i + 1; j < resultCandidates.size(); j++) {
+                if (resultCandidates.get(i).getEventid().equals(resultCandidates.get(j).getEventid()) && resultCandidates.get(i).getCandidateid().equals(resultCandidates.get(j).getCandidateid())) {
+                    resultCandidates.get(i).setResult(Integer.toString(Integer.valueOf(resultCandidates.get(i).getResult()) + Integer.valueOf(resultCandidates.get(j).getResult())));
+                    resultCandidates.remove(j);
+                    j = j - 1;
+                    System.out.println("r u here in one time??");
+                }
+            }
+        }
+
+        for (int i = 0; i < resultCandidates.size(); i++) {
+            resultCandidates.get(i).setEventid(sysEventService.get(resultCandidates.get(i).getEventid()).getEventname());
+            resultCandidates.get(i).setCandidateid(sysCandidateService.get(resultCandidates.get(i).getCandidateid()).getCandidatename());
+        }
+        Page<SysResultCandidate> resultPage  = new Page<SysResultCandidate>();
+        resultPage.setList(resultCandidates);
+
+        model.addAttribute("page", resultPage);
+        return "modules/resultcandidate/calculateResult";
     }
 
     @RequiresPermissions("resultcandidate:sysResultCandidate:view")
@@ -98,7 +136,7 @@ public class SysResultCandidateController extends BaseController {
         String eventID = sysResultCandidate.getId().split(" ")[1];
         String result = sysResultCandidate.getId().split(" ")[2];
 
-        for (int i = 0; i < c.length/2; i++) {
+        for (int i = 0; i < c.length / 2; i++) {
             person = person + c[i];
         }
 
@@ -118,7 +156,7 @@ public class SysResultCandidateController extends BaseController {
         }
         if (Integer.valueOf(result) > 1) {
             System.out.println("Is it here?????");
-			return "redirect:" + Global.getAdminPath() + "/candidates/sysCandidate/eTOp?id="+eventID+" "+result;
+            return "redirect:" + Global.getAdminPath() + "/candidates/sysCandidate/eTOp?id=" + eventID + " " + result;
         } else {
             return "redirect:" + Global.getAdminPath() + "/event/sysEvent/displayPerson";
         }
