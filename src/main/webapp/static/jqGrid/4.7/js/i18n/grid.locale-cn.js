@@ -98,7 +98,7 @@ $.extend($.jgrid,{
         currency : {decimalSeparator:".", thousandsSeparator: ",", decimalPlaces: 2, prefix: "", suffix:"", defaultValue: '0.00'},
         date : {
             dayNames:   [
-                "日", "一", "二", "三", "四", "五", "六",
+                "Day", "一", "二", "三", "四", "五", "六",
                 "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
             ],
             monthNames: [

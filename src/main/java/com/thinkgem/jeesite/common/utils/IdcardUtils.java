@@ -593,11 +593,11 @@ public class IdcardUtils extends StringUtils {
 	 * 验证小于当前日期 是否有效
 	 * 
 	 * @param iYear
-	 *            待验证日期(年)
+	 *            待验证日期(Year)
 	 * @param iMonth
-	 *            待验证日期(月 1-12)
+	 *            待验证日期(month 1-12)
 	 * @param iDate
-	 *            待验证日期(日)
+	 *            待验证日期(Day)
 	 * @return 是否有效
 	 */
 	public static boolean valiDate(int iYear, int iMonth, int iDate) {
