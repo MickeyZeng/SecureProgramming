@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>resultParty管理</title>
+	<title>resultParty Manage</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,7 +27,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/resultparty/sysResultParty/">resultParty列表</a></li>
+		<li><a href="${ctx}/resultparty/sysResultParty/">resultParty List</a></li>
 		<li class="active"><a href="${ctx}/resultparty/sysResultParty/form?id=${sysResultParty.id}">resultParty<shiro:hasPermission name="resultparty:sysResultParty:edit">${not empty sysResultParty.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="resultparty:sysResultParty:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="sysResultParty" action="${ctx}/resultparty/sysResultParty/save" method="post" class="form-horizontal">

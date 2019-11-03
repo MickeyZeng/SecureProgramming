@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>Candidates管理</title>
+	<title>Candidates Manage</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,8 +27,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/candidates/sysCandidate/">Candidates列表</a></li>
-		<li class="active"><a href="${ctx}/candidates/sysCandidate/form?id=${sysCandidate.id}">Candidates<shiro:hasPermission name="candidates:sysCandidate:edit">${not empty sysCandidate.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="candidates:sysCandidate:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/candidates/sysCandidate/">Candidates List</a></li>
+		<li class="active"><a href="${ctx}/candidates/sysCandidate/form?id=${sysCandidate.id}">Candidates<shiro:hasPermission name="candidates:sysCandidate:edit">${not empty sysCandidate.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="candidates:sysCandidate:edit">Read</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="sysCandidate" action="${ctx}/candidates/sysCandidate/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
