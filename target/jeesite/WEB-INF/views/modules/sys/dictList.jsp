@@ -28,12 +28,12 @@
 <%--		<label>类型：</label><form:select id="type" path="type" class="input-medium"><form:option value="" label=""/><form:options items="${typeList}" htmlEscape="false"/></form:select>--%>
 		&nbsp;&nbsp;<label>Descripte ：</label><form:input path="description" htmlEscape="false" maxlength="50" class="input-medium"/>
 <%--		&nbsp;&nbsp;<label>描述 ：</label><form:input path="description" htmlEscape="false" maxlength="50" class="input-medium"/>--%>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead><tr><th>Key Value</th><th>Tag</th><th>Type</th><th>Describe</th><th>Order</th><shiro:hasPermission name="sys:dict:edit"><th>Operator</th></shiro:hasPermission></tr></thead>
-<%--		<thead><tr><th>键值</th><th>标签</th><th>类型</th><th>描述</th><th>排序</th><shiro:hasPermission name="sys:dict:edit"><th>操作</th></shiro:hasPermission></tr></thead>--%>
+<%--		<thead><tr><th>键值</th><th>标签</th><th>类型</th><th>描述</th><th>排序</th><shiro:hasPermission name="sys:dict:edit"><th>Operator</th></shiro:hasPermission></tr></thead>--%>
 		<tbody>
 		<c:forEach items="${page.list}" var="dict">
 			<tr>
@@ -43,9 +43,9 @@
 				<td>${dict.description}</td>
 				<td>${dict.sort}</td>
 				<shiro:hasPermission name="sys:dict:edit"><td>
-    				<a href="${ctx}/sys/dict/form?id=${dict.id}">修改</a>
+    				<a href="${ctx}/sys/dict/form?id=${dict.id}">update</a>
 					<a href="${ctx}/sys/dict/delete?id=${dict.id}&type=${dict.type}" onclick="return confirmx('Do you wanna delete this one？', this.href)">Delete</a>
-<%--					<a href="${ctx}/sys/dict/delete?id=${dict.id}&type=${dict.type}" onclick="return confirmx('确认要删除该字典吗？', this.href)">删除</a>--%>
+<%--					<a href="${ctx}/sys/dict/delete?id=${dict.id}&type=${dict.type}" onclick="return confirmx('确认要删除该字典吗？', this.href)">Delete</a>--%>
     				<a href="<c:url value='${fns:getAdminPath()}/sys/dict/form?type=${dict.type}&sort=${dict.sort+10}'><c:param name='description' value='${dict.description}'/></c:url>">Add Key value</a>
 <%--    				<a href="<c:url value='${fns:getAdminPath()}/sys/dict/form?type=${dict.type}&sort=${dict.sort+10}'><c:param name='description' value='${dict.description}'/></c:url>">添加键值</a>--%>
 				</td></shiro:hasPermission>

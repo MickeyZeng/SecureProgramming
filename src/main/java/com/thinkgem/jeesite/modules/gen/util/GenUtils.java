@@ -152,7 +152,7 @@ public class GenUtils {
 				column.setJavaType(User.class.getName());
 				column.setJavaField(column.getJavaField() + ".id");
 			}
-			// 创建时间、更新时间
+			// 创建时间、Update Time
 			else if (StringUtils.startsWithIgnoreCase(column.getName(), "create_date")
 					|| StringUtils.startsWithIgnoreCase(column.getName(), "update_date")){
 				column.setShowType("dateselect");

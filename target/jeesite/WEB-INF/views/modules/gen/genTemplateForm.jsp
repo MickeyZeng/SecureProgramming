@@ -9,7 +9,7 @@
 			$("#name").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
-					loading('正在提交，请稍等...');
+					loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -28,7 +28,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/gen/genTemplate/">代码模板列表</a></li>
-		<li class="active"><a href="${ctx}/gen/genTemplate/form?id=${genTemplate.id}">代码模板<shiro:hasPermission name="gen:genTemplate:edit">${not empty genTemplate.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="gen:genTemplate:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/gen/genTemplate/form?id=${genTemplate.id}">代码模板<shiro:hasPermission name="gen:genTemplate:edit">${not empty genTemplate.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="gen:genTemplate:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="genTemplate" action="${ctx}/gen/genTemplate/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -165,8 +165,8 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="gen:genTemplate:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<shiro:hasPermission name="gen:genTemplate:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>
+			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
 </body>

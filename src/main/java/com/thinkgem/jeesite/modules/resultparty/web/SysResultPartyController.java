@@ -66,6 +66,9 @@ public class SysResultPartyController extends BaseController {
 		return "modules/resultparty/sysResultPartyList";
 	}
 
+	/**
+	 * This function is for displaying the result of party
+	 * */
 	@RequiresPermissions("resultparty:sysResultParty:view")
 	@RequestMapping(value = "calculate")
 	public String calculate(SysResultParty sysResultParty, HttpServletRequest request, HttpServletResponse response, Model model) {

@@ -18,7 +18,7 @@
 		<li class="active"><a href="${ctx}/cms/site/select">站点切换</a></li>
 	</ul>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
-		<thead><tr><th>名称</th><shiro:hasPermission name="cms:view"><th>操作</th></shiro:hasPermission></tr></thead>
+		<thead><tr><th>名称</th><shiro:hasPermission name="cms:view"><th>Operator</th></shiro:hasPermission></tr></thead>
 		<tbody>
 		<c:forEach items="${fnc:getSiteList()}" var="site">
 			<tr>

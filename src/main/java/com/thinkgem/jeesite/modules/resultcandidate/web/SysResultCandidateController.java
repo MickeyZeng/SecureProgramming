@@ -68,6 +68,9 @@ public class SysResultCandidateController extends BaseController {
         return "modules/resultcandidate/sysResultCandidateList";
     }
 
+    /**
+     *This fucntion is to display the reuslt of candidate in each event
+     */
     @RequiresPermissions("resultcandidate:sysResultCandidate:view")
     @RequestMapping(value = "calculate")
     public String calculate(SysResultCandidate sysResultCandidate, HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -83,12 +86,11 @@ public class SysResultCandidateController extends BaseController {
                 }
             }
         }
-
         for (int i = 0; i < resultCandidates.size(); i++) {
             resultCandidates.get(i).setEventid(sysEventService.get(resultCandidates.get(i).getEventid()).getEventname());
             resultCandidates.get(i).setCandidateid(sysCandidateService.get(resultCandidates.get(i).getCandidateid()).getCandidatename());
         }
-        Page<SysResultCandidate> resultPage  = new Page<SysResultCandidate>();
+        Page<SysResultCandidate> resultPage = new Page<SysResultCandidate>();
         resultPage.setList(resultCandidates);
 
         model.addAttribute("page", resultPage);

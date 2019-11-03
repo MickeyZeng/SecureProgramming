@@ -67,7 +67,7 @@
 				title="Department" url="/sys/office/treeData?type=2" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/></li>
 <%--			<li><label>姓&nbsp;&nbsp;&nbsp;名：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"/></li>--%>
 			<li><label>Name：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"/></li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" onclick="return page();"/>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check" onclick="return page();"/>
 				<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
 				<input id="btnImport" class="btn btn-primary" type="button" value="导入"/></li>
 			<li class="clearfix"></li>
@@ -76,7 +76,7 @@
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead><tr><th>Office</th><th>Department</th><th class="sort-column login_name">Login Name</th><th class="sort-column name">Name</th><th>Phone</th><th>Mobile</th><%--<th>角色</th> --%><shiro:hasPermission name="sys:user:edit"><th>Operator</th></shiro:hasPermission></tr></thead>
-<%--		<thead><tr><th>归属公司</th><th>归属部门</th><th class="sort-column login_name">登录名</th><th class="sort-column name">姓名</th><th>电话</th><th>手机</th>&lt;%&ndash;<th>角色</th> &ndash;%&gt;<shiro:hasPermission name="sys:user:edit"><th>操作</th></shiro:hasPermission></tr></thead>--%>
+<%--		<thead><tr><th>归属公司</th><th>归属部门</th><th class="sort-column login_name">登录名</th><th class="sort-column name">姓名</th><th>电话</th><th>手机</th>&lt;%&ndash;<th>角色</th> &ndash;%&gt;<shiro:hasPermission name="sys:user:edit"><th>Operator</th></shiro:hasPermission></tr></thead>--%>
 		<tbody>
 		<c:forEach items="${page.list}" var="user">
 			<tr>
@@ -89,9 +89,9 @@
 				<td>${user.roleNames}</td> --%>
 				<shiro:hasPermission name="sys:user:edit"><td>
     				<a href="${ctx}/sys/user/form?id=${user.id}">Update</a>
-<%--    				<a href="${ctx}/sys/user/form?id=${user.id}">修改</a>--%>
+<%--    				<a href="${ctx}/sys/user/form?id=${user.id}">update</a>--%>
 					<a href="${ctx}/sys/user/delete?id=${user.id}" onclick="return confirmx('Delete this user？', this.href)">Delete</a>
-<%--					<a href="${ctx}/sys/user/delete?id=${user.id}" onclick="return confirmx('确认要删除该用户吗？', this.href)">删除</a>--%>
+<%--					<a href="${ctx}/sys/user/delete?id=${user.id}" onclick="return confirmx('确认要删除该用户吗？', this.href)">Delete</a>--%>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

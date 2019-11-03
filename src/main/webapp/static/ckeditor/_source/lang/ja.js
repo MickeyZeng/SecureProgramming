@@ -41,7 +41,7 @@ CKEDITOR.lang['ja'] =
 	// Toolbar buttons without dialogs.
 	source			: 'ソース',
 	newPage			: '新しいページ',
-	save			: '保存',
+	save			: 'Save',
 	preview			: 'プレビュー',
 	cut				: '切り取り',
 	copy			: 'コピー',

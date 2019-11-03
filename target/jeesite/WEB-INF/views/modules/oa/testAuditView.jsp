@@ -9,7 +9,7 @@
 			$("#name").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
-					loading('正在提交，请稍等...');
+					loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -92,7 +92,7 @@
 		</fieldset>
 		<act:histoicFlow procInsId="${testAudit.act.procInsId}" />
 		<div class="form-actions">
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
 </body>

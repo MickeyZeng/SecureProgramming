@@ -276,7 +276,7 @@ CKFinder.lang['ja'] =
 	// Fileeditor plugin
 	Fileeditor :
 	{
-		save			: '保存',
+		save			: 'Save',
 		fileOpenError	: 'ファイルを開けませんでした。',
 		fileSaveSuccess	: 'ファイルの保存が完了しました。',
 		contextMenuName	: '編集',

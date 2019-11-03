@@ -45,7 +45,7 @@
 				<option value="${dict.value}" ${dict.value==category?'selected':''}>${dict.label}</option>
 			</c:forEach>
 		</select>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 	</form>
 	<sys:message content="${message}"/>
 	<table class="table table-striped table-bordered table-condensed table-nowrap">
@@ -59,7 +59,7 @@
 				<th>部署时间</th>
 				<th>流程XML</th>
 				<th>流程图片</th>
-				<th>操作</th>
+				<th>Operator</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -82,7 +82,7 @@
 						<c:if test="${!process.suspended}">
 							<a href="${ctx}/act/process/update/suspend?procDefId=${process.id}" onclick="return confirmx('确认挂起除吗？', this.href)">挂起</a>
 						</c:if>
-						<a href='${ctx}/act/process/delete?deploymentId=${process.deploymentId}' onclick="return confirmx('确认要删除该流程吗？', this.href)">删除</a>
+						<a href='${ctx}/act/process/delete?deploymentId=${process.deploymentId}' onclick="return confirmx('确认要删除该流程吗？', this.href)">Delete</a>
                         <a href='${ctx}/act/process/convert/toModel?procDefId=${process.id}' onclick="return confirmx('确认要转换为模型吗？', this.href)">转换为模型</a>
 					</td>
 				</tr>

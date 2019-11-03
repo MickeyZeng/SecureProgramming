@@ -9,7 +9,7 @@
 			$("#comments").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
-					loading('正在提交，请稍等...');
+					loading('Loading.....');
 					$("input[type=checkbox]").each(function(){
 						$(this).after("<input type=\"hidden\" name=\""+$(this).attr("name")+"\" value=\""
 								+($(this).attr("checked")?"1":"0")+"\"/>");
@@ -33,7 +33,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/gen/genTable/">业务表列表</a></li>
-		<li class="active"><a href="${ctx}/gen/genTable/form?id=${genTable.id}&name=${genTable.name}">业务表<shiro:hasPermission name="gen:genTable:edit">${not empty genTable.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="gen:genTable:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/gen/genTable/form?id=${genTable.id}&name=${genTable.name}">业务表<shiro:hasPermission name="gen:genTable:edit">${not empty genTable.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="gen:genTable:edit">查看</shiro:lacksPermission></a></li>
 	</ul>
 	<c:choose>
 		<c:when test="${empty genTable.name}">
@@ -50,7 +50,7 @@
 					</div>
 					<div class="form-actions">
 						<input id="btnSubmit" class="btn btn-primary" type="submit" value="下一步"/>&nbsp;
-						<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+						<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>
 					</div>
 				</div>
 			</form:form>
@@ -106,8 +106,8 @@
 							<thead><tr><th title="数据库字段名">列名</th><th title="默认读取数据库字段备注">说明</th><th title="数据库中设置的字段类型及长度">物理类型</th><th title="实体对象的属性字段类型">Java类型</th>
 								<th title="实体对象的属性字段（对象名.属性名|属性名2|属性名3，例如：用户user.id|name|loginName，属性名2和属性名3为Join时关联查询的字段）">Java属性名称 <i class="icon-question-sign"></i></th>
 								<th title="是否是数据库主键">主键</th><th title="字段是否可为空值，不可为空字段自动进行空值验证">可空</th><th title="选中后该字段被加入到insert语句里">插入</th>
-								<th title="选中后该字段被加入到update语句里">编辑</th><th title="选中后该字段被加入到查询列表里">列表</th>
-								<th title="选中后该字段被加入到查询条件里">查询</th><th title="该字段为查询字段时的查询匹配放松">查询匹配方式</th>
+								<th title="选中后该字段被加入到update语句里">编辑</th><th title="选中后该字段被加入到查询列表里">List</th>
+								<th title="选中后该字段被加入到查询条件里">Check</th><th title="该字段为查询字段时的查询匹配放松">查询匹配方式</th>
 								<th title="字段在表单中显示的类型">显示表单类型</th><th title="显示表单类型设置为“下拉框、复选框、点选框”时，需设置字典的类型">字典类型</th><th>排序</th></tr></thead>
 							<tbody>
 							<c:forEach items="${genTable.columnList}" var="column" varStatus="vs">
@@ -179,8 +179,8 @@
 					</div>
 				</fieldset>
 				<div class="form-actions">
-					<shiro:hasPermission name="gen:genTable:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
-					<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+					<shiro:hasPermission name="gen:genTable:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>
+					<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>
 				</div>
 			</form:form>
 		</c:otherwise>

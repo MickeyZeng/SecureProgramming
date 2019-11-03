@@ -373,7 +373,7 @@ CKEDITOR.lang['zh'] =
 		opText		: '顯示文字',
 		opValue		: '選取值',
 		btnAdd		: '新增',
-		btnModify	: '修改',
+		btnModify	: 'update',
 		btnUp		: '上移',
 		btnDown		: '下移',
 		btnSetValue : '設為預設值',

@@ -32,7 +32,7 @@
 					}
 					$("#officeIds").val(ids2);
 					loading('Loading...');
-					// loading('正在提交，请稍等...');
+					// loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -107,7 +107,7 @@
 		<li><a href="${ctx}/sys/role/">Role List</a></li>
 <%--		<li><a href="${ctx}/sys/role/">角色列表</a></li>--%>
 		<li class="active"><a href="${ctx}/sys/role/form?id=${role.id}">Role<shiro:hasPermission name="sys:role:edit">${not empty role.id?'Update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">Check</shiro:lacksPermission></a></li>
-<%--		<li class="active"><a href="${ctx}/sys/role/form?id=${role.id}">角色<shiro:hasPermission name="sys:role:edit">${not empty role.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">查看</shiro:lacksPermission></a></li>--%>
+<%--		<li class="active"><a href="${ctx}/sys/role/form?id=${role.id}">角色<shiro:hasPermission name="sys:role:edit">${not empty role.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">查看</shiro:lacksPermission></a></li>--%>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="role" action="${ctx}/sys/role/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -215,7 +215,7 @@
 			<c:if test="${(role.sysData eq fns:getDictValue('Yes', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('Yes', 'yes_no', '1'))}">
 <%--			<c:if test="${(role.sysData eq fns:getDictValue('是', 'yes_no', '1') && fns:getUser().admin)||!(role.sysData eq fns:getDictValue('是', 'yes_no', '1'))}">--%>
 				<shiro:hasPermission name="sys:role:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Save"/>&nbsp;</shiro:hasPermission>
-<%--				<shiro:hasPermission name="sys:role:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>--%>
+<%--				<shiro:hasPermission name="sys:role:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>--%>
 			</c:if>
 			<input id="btnCancel" class="btn" type="button" value="Return" onclick="history.go(-1)"/>
 		</div>

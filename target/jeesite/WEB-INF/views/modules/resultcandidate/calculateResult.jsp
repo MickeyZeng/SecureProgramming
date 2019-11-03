@@ -31,7 +31,7 @@
 			<li><label>Event ID：</label>
 				<form:input path="eventid" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -42,9 +42,9 @@
 				<th>candidate ID</th>
 				<th>Event ID</th>
 				<th>Result</th>
-				<th>更新时间</th>
-				<th>备注信息</th>
-				<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit"><th>操作</th></shiro:hasPermission>
+				<th>Update Time</th>
+				<th>Recomment</th>
+				<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit"><th>Operator</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -66,8 +66,8 @@
 					${sysResultCandidate.remarks}
 				</td>
 				<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit"><td>
-    				<a href="${ctx}/resultcandidate/sysResultCandidate/form?id=${sysResultCandidate.id}">修改</a>
-					<a href="${ctx}/resultcandidate/sysResultCandidate/delete?id=${sysResultCandidate.id}" onclick="return confirmx('确认要删除该resultCandidate吗？', this.href)">删除</a>
+    				<a href="${ctx}/resultcandidate/sysResultCandidate/form?id=${sysResultCandidate.id}">update</a>
+					<a href="${ctx}/resultcandidate/sysResultCandidate/delete?id=${sysResultCandidate.id}" onclick="return confirmx('确认要删除该resultCandidate吗？', this.href)">Delete</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

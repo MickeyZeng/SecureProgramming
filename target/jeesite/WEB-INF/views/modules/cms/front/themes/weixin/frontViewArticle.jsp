@@ -130,7 +130,7 @@
 			<div class="span12">
 				<div>
 					<h4 id="wz_title">${article.title}</h4>
-					<span id="wz_date">发布者：${article.createBy.name} &nbsp; 点击数：${article.hits} &nbsp; 发布时间：<fmt:formatDate value="${article.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/> &nbsp; 更新时间：<fmt:formatDate value="${article.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+					<span id="wz_date">发布者：${article.createBy.name} &nbsp; 点击数：${article.hits} &nbsp; 发布时间：<fmt:formatDate value="${article.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/> &nbsp; Update Time：<fmt:formatDate value="${article.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
 					<a class="activity-meta" href="weixin://addfriend/chinatea2014" onclick="men_pho_cli2()"> 
 						<span class="text-ellipsis">${article.description}</span> <i class="icon_link_arrow"></i>
 					</a>

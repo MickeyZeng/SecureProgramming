@@ -25,11 +25,11 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<label>方案名称 ：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"/>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
-		<thead><tr><th>方案名称</th><th>生成模块</th><th>模块名</th><th>功能名</th><th>功能作者</th><shiro:hasPermission name="gen:genScheme:edit"><th>操作</th></shiro:hasPermission></tr></thead>
+		<thead><tr><th>方案名称</th><th>生成模块</th><th>模块名</th><th>功能名</th><th>功能作者</th><shiro:hasPermission name="gen:genScheme:edit"><th>Operator</th></shiro:hasPermission></tr></thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="genScheme">
 			<tr>
@@ -39,8 +39,8 @@
 				<td>${genScheme.functionName}</td>
 				<td>${genScheme.functionAuthor}</td>
 				<shiro:hasPermission name="gen:genScheme:edit"><td>
-    				<a href="${ctx}/gen/genScheme/form?id=${genScheme.id}">修改</a>
-					<a href="${ctx}/gen/genScheme/delete?id=${genScheme.id}" onclick="return confirmx('确认要删除该生成方案吗？', this.href)">删除</a>
+    				<a href="${ctx}/gen/genScheme/form?id=${genScheme.id}">update</a>
+					<a href="${ctx}/gen/genScheme/delete?id=${genScheme.id}" onclick="return confirmx('确认要删除该生成方案吗？', this.href)">Delete</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

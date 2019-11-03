@@ -51,7 +51,7 @@
 					value="<fmt:formatDate value="${testData.endInDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -64,9 +64,9 @@
 				<th>归属区域</th>
 				<th>名称</th>
 				<th>性别</th>
-				<th>更新时间</th>
-				<th>备注信息</th>
-				<shiro:hasPermission name="test:testData:edit"><th>操作</th></shiro:hasPermission>
+				<th>Update Time</th>
+				<th>Recomment</th>
+				<shiro:hasPermission name="test:testData:edit"><th>Operator</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -94,8 +94,8 @@
 					${testData.remarks}
 				</td>
 				<shiro:hasPermission name="test:testData:edit"><td>
-    				<a href="${ctx}/test/testData/form?id=${testData.id}">修改</a>
-					<a href="${ctx}/test/testData/delete?id=${testData.id}" onclick="return confirmx('确认要删除该单表吗？', this.href)">删除</a>
+    				<a href="${ctx}/test/testData/form?id=${testData.id}">update</a>
+					<a href="${ctx}/test/testData/delete?id=${testData.id}" onclick="return confirmx('确认要删除该单表吗？', this.href)">Delete</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS sys_role;
 
 CREATE TABLE sys_area
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	parent_id varchar(64) NOT NULL COMMENT '父级编号',
 	parent_ids varchar(2000) NOT NULL COMMENT '所有父级编号',
 	name varchar(100) NOT NULL COMMENT '名称',
@@ -31,8 +31,8 @@ CREATE TABLE sys_area
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	create_date datetime NOT NULL COMMENT '创建时间',
 	update_by varchar(64) NOT NULL COMMENT '更新者',
-	update_date datetime NOT NULL COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime NOT NULL COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '区域表';
@@ -40,7 +40,7 @@ CREATE TABLE sys_area
 
 CREATE TABLE sys_dict
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	value varchar(100) NOT NULL COMMENT '数据值',
 	label varchar(100) NOT NULL COMMENT '标签名',
 	type varchar(100) NOT NULL COMMENT '类型',
@@ -50,8 +50,8 @@ CREATE TABLE sys_dict
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	create_date datetime NOT NULL COMMENT '创建时间',
 	update_by varchar(64) NOT NULL COMMENT '更新者',
-	update_date datetime NOT NULL COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime NOT NULL COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '字典表';
@@ -59,7 +59,7 @@ CREATE TABLE sys_dict
 
 CREATE TABLE sys_log
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	type char(1) DEFAULT '1' COMMENT '日志类型',
 	title varchar(255) DEFAULT '' COMMENT '日志标题',
 	create_by varchar(64) COMMENT '创建者',
@@ -76,7 +76,7 @@ CREATE TABLE sys_log
 
 CREATE TABLE sys_mdict
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	parent_id varchar(64) NOT NULL COMMENT '父级编号',
 	parent_ids varchar(2000) NOT NULL COMMENT '所有父级编号',
 	name varchar(100) NOT NULL COMMENT '名称',
@@ -85,8 +85,8 @@ CREATE TABLE sys_mdict
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	create_date datetime NOT NULL COMMENT '创建时间',
 	update_by varchar(64) NOT NULL COMMENT '更新者',
-	update_date datetime NOT NULL COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime NOT NULL COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '多级字典表';
@@ -94,7 +94,7 @@ CREATE TABLE sys_mdict
 
 CREATE TABLE sys_menu
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	parent_id varchar(64) NOT NULL COMMENT '父级编号',
 	parent_ids varchar(2000) NOT NULL COMMENT '所有父级编号',
 	name varchar(100) NOT NULL COMMENT '名称',
@@ -107,8 +107,8 @@ CREATE TABLE sys_menu
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	create_date datetime NOT NULL COMMENT '创建时间',
 	update_by varchar(64) NOT NULL COMMENT '更新者',
-	update_date datetime NOT NULL COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime NOT NULL COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '菜单表';
@@ -116,7 +116,7 @@ CREATE TABLE sys_menu
 
 CREATE TABLE sys_office
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	parent_id varchar(64) NOT NULL COMMENT '父级编号',
 	parent_ids varchar(2000) NOT NULL COMMENT '所有父级编号',
 	name varchar(100) NOT NULL COMMENT '名称',
@@ -137,8 +137,8 @@ CREATE TABLE sys_office
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	create_date datetime NOT NULL COMMENT '创建时间',
 	update_by varchar(64) NOT NULL COMMENT '更新者',
-	update_date datetime NOT NULL COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime NOT NULL COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '机构表';
@@ -146,7 +146,7 @@ CREATE TABLE sys_office
 
 CREATE TABLE sys_role
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	office_id varchar(64) COMMENT '归属机构',
 	name varchar(100) NOT NULL COMMENT '角色名称',
 	enname varchar(255) COMMENT '英文名称',
@@ -157,8 +157,8 @@ CREATE TABLE sys_role
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	create_date datetime NOT NULL COMMENT '创建时间',
 	update_by varchar(64) NOT NULL COMMENT '更新者',
-	update_date datetime NOT NULL COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime NOT NULL COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '角色表';
@@ -182,7 +182,7 @@ CREATE TABLE sys_role_office
 
 CREATE TABLE sys_user
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	company_id varchar(64) NOT NULL COMMENT '归属公司',
 	office_id varchar(64) NOT NULL COMMENT '归属部门',
 	login_name varchar(100) NOT NULL COMMENT '登录名',
@@ -200,8 +200,8 @@ CREATE TABLE sys_user
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	create_date datetime NOT NULL COMMENT '创建时间',
 	update_by varchar(64) NOT NULL COMMENT '更新者',
-	update_date datetime NOT NULL COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime NOT NULL COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '用户表';

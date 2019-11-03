@@ -253,7 +253,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
 		private static final long serialVersionUID = 1L;
 		
-		private String id; // 编号
+		private String id; // ID
 		private String loginName; // 登录名
 		private String name; // 姓名
 		private boolean mobileLogin; // 是否手机登录

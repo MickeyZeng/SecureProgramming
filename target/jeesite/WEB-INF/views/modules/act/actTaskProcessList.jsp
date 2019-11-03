@@ -26,7 +26,7 @@
 				<option value="${dict.value}" ${dict.value==category?'selected':''}>${dict.label}</option>
 			</c:forEach>
 		</select>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 	</form>
 	<sys:message content="${message}"/>
 	<table class="table table-striped table-bordered table-condensed">
@@ -37,8 +37,8 @@
 				<th>流程名称</th>
 				<th>流程图</th>
 				<th>流程版本</th>
-				<th>更新时间</th>
-				<th>操作</th>
+				<th>Update Time</th>
+				<th>Operator</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -215,7 +215,7 @@ public class SystemService extends BaseService implements InitializingBean {
 	}
 	
 	/**
-	 * 生成安全的密码，生成随机的16位salt并经过1024次 sha-1 hash
+	 * Create a safe password and generate 16 bytes salt and hash in 1024 times
 	 */
 	public static String entryptPassword(String plainPassword) {
 		String plain = Encodes.unescapeHtml(plainPassword);
@@ -225,10 +225,10 @@ public class SystemService extends BaseService implements InitializingBean {
 	}
 	
 	/**
-	 * 验证密码
-	 * @param plainPassword 明文密码
-	 * @param password 密文密码
-	 * @return 验证成功返回true
+	 * check the pass word
+	 * @param plainPassword Paint Text Password
+	 * @param password Cipher Text Password
+	 * @return If it is right, return true.
 	 */
 	public static boolean validatePassword(String plainPassword, String password) {
 		String plain = Encodes.unescapeHtml(plainPassword);

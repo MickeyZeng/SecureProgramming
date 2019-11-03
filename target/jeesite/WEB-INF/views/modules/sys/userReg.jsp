@@ -34,7 +34,15 @@
 <%--		</div>--%>
 <%--	</div>--%>
 	<div class="control-group">
-		<label class="control-label">Work ID:</label>
+		<label class="control-label">Passport ID:</label>
+			<%--			<label class="control-label">工号:</label>--%>
+		<div class="controls">
+			<form:input path="no" htmlEscape="false" maxlength="50" class="required"/>
+			<span class="help-inline"><font color="red">*</font> </span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">Driver Licence ID:</label>
 			<%--			<label class="control-label">工号:</label>--%>
 		<div class="controls">
 			<form:input path="no" htmlEscape="false" maxlength="50" class="required"/>
@@ -153,9 +161,9 @@
 <%--	</c:if>--%>
 	<div class="form-actions">
 		<input id="btnSubmit" class="btn btn-primary" type="submit" value="Save"/>
-			<%--			<shiro:hasPermission name="sys:user:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>--%>
+			<%--			<shiro:hasPermission name="sys:user:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>--%>
 		<input id="btnCancel" class="btn" type="button" value="Return" onclick="history.go(-1)"/>
-			<%--			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>--%>
+			<%--			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>--%>
 	</div>
 </form:form>
 </body>

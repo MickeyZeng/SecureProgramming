@@ -34,7 +34,7 @@
 			<li><label>party ID：</label>
 				<form:input path="partyid" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -45,9 +45,9 @@
 				<th>Candidate ID</th>
 				<th>Candidate Name</th>
 				<th>party ID</th>
-				<th>更新时间</th>
-				<th>备注信息</th>
-				<shiro:hasPermission name="candidates:sysCandidate:edit"><th>操作</th></shiro:hasPermission>
+				<th>Update Time</th>
+				<th>Recomment</th>
+				<shiro:hasPermission name="candidates:sysCandidate:edit"><th>Operator</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -69,7 +69,7 @@
 					${sysCandidate.remarks}
 				</td>
 				<td>
-    				<a href="${ctx}/resultcandidate/sysResultCandidate/vote?id=${sysCandidate.id}+${eventID}+${sizes}">投票</a>
+    				<a href="${ctx}/resultcandidate/sysResultCandidate/vote?id=${sysCandidate.id}+${eventID}+${sizes}">Vote</a>
 				</td>
 			</tr>
 		</c:forEach>

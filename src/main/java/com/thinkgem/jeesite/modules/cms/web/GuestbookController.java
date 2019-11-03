@@ -72,7 +72,7 @@ public class GuestbookController extends BaseController {
 			guestbook.setReDate(new Date());
 		}
 		guestbookService.save(guestbook);
-		addMessage(redirectAttributes, DictUtils.getDictLabel(guestbook.getDelFlag(), "cms_del_flag", "保存")
+		addMessage(redirectAttributes, DictUtils.getDictLabel(guestbook.getDelFlag(), "cms_del_flag", "Save")
 				+"留言'" + guestbook.getName() + "'成功");
 		return "redirect:" + adminPath + "/cms/guestbook/?repage&status=2";
 	}
@@ -81,7 +81,7 @@ public class GuestbookController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(Guestbook guestbook, @RequestParam(required=false) Boolean isRe, RedirectAttributes redirectAttributes) {
 		guestbookService.delete(guestbook, isRe);
-		addMessage(redirectAttributes, (isRe!=null&&isRe?"恢复审核":"删除")+"留言成功");
+		addMessage(redirectAttributes, (isRe!=null&&isRe?"恢复审核":"Delete")+"留言成功");
 		return "redirect:" + adminPath + "/cms/guestbook/?repage&status=2";
 	}
 

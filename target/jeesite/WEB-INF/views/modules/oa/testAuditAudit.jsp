@@ -9,7 +9,7 @@
 			$("#name").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
-					loading('正在提交，请稍等...');
+					loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -113,7 +113,7 @@
 					<input id="btnSubmit" class="btn btn-inverse" type="submit" value="驳 回" onclick="$('#flag').val('no')"/>&nbsp;
 				</c:if>
 			</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>
 		</div>
 		<act:histoicFlow procInsId="${testAudit.act.procInsId}"/>
 	</form:form>

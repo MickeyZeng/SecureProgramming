@@ -2,14 +2,14 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>Party管理</title>
+	<title>Manage Party</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//$("#name").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
-					loading('正在提交，请稍等...');
+					loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -27,8 +27,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/party/sysPartCandidate/">Party列表</a></li>
-		<li class="active"><a href="${ctx}/party/sysPartCandidate/form?id=${sysPartCandidate.id}">Party<shiro:hasPermission name="party:sysPartCandidate:edit">${not empty sysPartCandidate.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="party:sysPartCandidate:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/party/sysPartCandidate/">Party List</a></li>
+		<li class="active"><a href="${ctx}/party/sysPartCandidate/form?id=${sysPartCandidate.id}">Party<shiro:hasPermission name="party:sysPartCandidate:edit">${not empty sysPartCandidate.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="party:sysPartCandidate:edit">Check</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="sysPartCandidate" action="${ctx}/party/sysPartCandidate/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -55,14 +55,14 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">备注信息：</label>
+			<label class="control-label">Recomment：</label>
 			<div class="controls">
 				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="party:sysPartCandidate:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<shiro:hasPermission name="party:sysPartCandidate:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>
+			<input id="btnCancel" class="btn" type="button" value="Return" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
 </body>

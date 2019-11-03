@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS cms_site;
 
 CREATE TABLE cms_article
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	category_id varchar(64) NOT NULL COMMENT '栏目编号',
 	title varchar(255) NOT NULL COMMENT '标题',
 	link varchar(255) COMMENT '文章链接',
@@ -28,8 +28,8 @@ CREATE TABLE cms_article
 	create_by varchar(64) COMMENT '创建者',
 	create_date datetime COMMENT '创建时间',
 	update_by varchar(64) COMMENT '更新者',
-	update_date datetime COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '文章表';
@@ -37,7 +37,7 @@ CREATE TABLE cms_article
 
 CREATE TABLE cms_article_data
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	content text COMMENT '文章内容',
 	copyfrom varchar(255) COMMENT '文章来源',
 	relation varchar(255) COMMENT '相关文章',
@@ -48,7 +48,7 @@ CREATE TABLE cms_article_data
 
 CREATE TABLE cms_category
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	parent_id varchar(64) NOT NULL COMMENT '父级编号',
 	parent_ids varchar(2000) NOT NULL COMMENT '所有父级编号',
 	site_id varchar(64) DEFAULT '1' COMMENT '站点编号',
@@ -72,8 +72,8 @@ CREATE TABLE cms_category
 	create_by varchar(64) COMMENT '创建者',
 	create_date datetime COMMENT '创建时间',
 	update_by varchar(64) COMMENT '更新者',
-	update_date datetime COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '栏目表';
@@ -81,7 +81,7 @@ CREATE TABLE cms_category
 
 CREATE TABLE cms_comment
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	category_id varchar(64) NOT NULL COMMENT '栏目编号',
 	content_id varchar(64) NOT NULL COMMENT '栏目内容的编号',
 	title varchar(255) COMMENT '栏目内容的标题',
@@ -98,7 +98,7 @@ CREATE TABLE cms_comment
 
 CREATE TABLE cms_guestbook
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	type char(1) NOT NULL COMMENT '留言分类',
 	content varchar(255) NOT NULL COMMENT '留言内容',
 	name varchar(100) NOT NULL COMMENT '姓名',
@@ -117,7 +117,7 @@ CREATE TABLE cms_guestbook
 
 CREATE TABLE cms_link
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	category_id varchar(64) NOT NULL COMMENT '栏目编号',
 	title varchar(255) NOT NULL COMMENT '链接名称',
 	color varchar(50) COMMENT '标题颜色',
@@ -128,8 +128,8 @@ CREATE TABLE cms_link
 	create_by varchar(64) COMMENT '创建者',
 	create_date datetime COMMENT '创建时间',
 	update_by varchar(64) COMMENT '更新者',
-	update_date datetime COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '友情链接';
@@ -137,7 +137,7 @@ CREATE TABLE cms_link
 
 CREATE TABLE cms_site
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	name varchar(100) NOT NULL COMMENT '站点名称',
 	title varchar(100) NOT NULL COMMENT '站点标题',
 	logo varchar(255) COMMENT '站点Logo',
@@ -150,8 +150,8 @@ CREATE TABLE cms_site
 	create_by varchar(64) COMMENT '创建者',
 	create_date datetime COMMENT '创建时间',
 	update_by varchar(64) COMMENT '更新者',
-	update_date datetime COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
+	update_date datetime COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '站点表';

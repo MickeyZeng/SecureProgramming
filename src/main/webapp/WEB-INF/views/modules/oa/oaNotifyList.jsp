@@ -37,7 +37,7 @@
 			<c:if test="${!requestScope.oaNotify.self}"><li><label>状态：</label>
 				<form:radiobuttons path="status" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			</li></c:if>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -49,8 +49,8 @@
 				<th>类型</th>
 				<th>状态</th>
 				<th>查阅状态</th>
-				<th>更新时间</th>
-				<c:if test="${!oaNotify.self}"><shiro:hasPermission name="oa:oaNotify:edit"><th>操作</th></shiro:hasPermission></c:if>
+				<th>Update Time</th>
+				<c:if test="${!oaNotify.self}"><shiro:hasPermission name="oa:oaNotify:edit"><th>Operator</th></shiro:hasPermission></c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -77,8 +77,8 @@
 					<fmt:formatDate value="${oaNotify.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<c:if test="${!requestScope.oaNotify.self}"><shiro:hasPermission name="oa:oaNotify:edit"><td>
-    				<a href="${ctx}/oa/oaNotify/form?id=${oaNotify.id}">修改</a>
-					<a href="${ctx}/oa/oaNotify/delete?id=${oaNotify.id}" onclick="return confirmx('确认要删除该通知吗？', this.href)">删除</a>
+    				<a href="${ctx}/oa/oaNotify/form?id=${oaNotify.id}">update</a>
+					<a href="${ctx}/oa/oaNotify/delete?id=${oaNotify.id}" onclick="return confirmx('确认要删除该通知吗？', this.href)">Delete</a>
 				</td></shiro:hasPermission></c:if>
 			</tr>
 		</c:forEach>

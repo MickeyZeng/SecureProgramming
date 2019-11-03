@@ -49,7 +49,7 @@
 			<li><label>名称：</label>
 				<form:input path="name" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -59,14 +59,14 @@
 			<tr>
 <%--				<th>名称</th>--%>
 <%--				<th>排序</th>--%>
-<%--				<th>更新时间</th>--%>
-<%--				<th>备注信息</th>--%>
+<%--				<th>Update Time</th>--%>
+<%--				<th>Recomment</th>--%>
 				<th>Name</th>
 				<th>Order</th>
 				<th>Update Date</th>
 				<th>Comment</th>
 				<shiro:hasPermission name="test:testTree:edit"><th>Operator</th></shiro:hasPermission>
-<%--				<shiro:hasPermission name="test:testTree:edit"><th>操作</th></shiro:hasPermission>--%>
+<%--				<shiro:hasPermission name="test:testTree:edit"><th>Operator</th></shiro:hasPermission>--%>
 			</tr>
 		</thead>
 		<tbody id="treeTableList"></tbody>
@@ -86,8 +86,8 @@
 				{{row.remarks}}
 			</td>
 			<shiro:hasPermission name="test:testTree:edit"><td>
-   				<a href="${ctx}/test/testTree/form?id={{row.id}}">修改</a>
-				<a href="${ctx}/test/testTree/delete?id={{row.id}}" onclick="return confirmx('确认要删除该树结构及所有子树结构吗？', this.href)">删除</a>
+   				<a href="${ctx}/test/testTree/form?id={{row.id}}">update</a>
+				<a href="${ctx}/test/testTree/delete?id={{row.id}}" onclick="return confirmx('确认要删除该树结构及所有子树结构吗？', this.href)">Delete</a>
 				<a href="${ctx}/test/testTree/form?parent.id={{row.id}}">添加下级树结构</a> 
 			</td></shiro:hasPermission>
 		</tr>

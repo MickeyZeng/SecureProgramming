@@ -44,7 +44,7 @@
 				<option value="${dict.value}" ${dict.value==category?'selected':''}>${dict.label}</option>
 			</c:forEach>
 		</select>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 	</form>
 	<sys:message content="${message}"/>
 	<table class="table table-striped table-bordered table-condensed table-nowrap">
@@ -57,7 +57,7 @@
 				<th>版本号</th>
 				<th>创建时间</th>
 				<th>最后更新时间</th>
-				<th>操作</th>
+				<th>Operator</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -74,7 +74,7 @@
 						<a href="${pageContext.request.contextPath}/act/process-editor/modeler.jsp?modelId=${model.id}" target="_blank">编辑</a>
 						<a href="${ctx}/act/model/deploy?id=${model.id}" onclick="return confirmx('确认要部署该模型吗？', this.href)">部署</a>
 						<a href="${ctx}/act/model/export?id=${model.id}" target="_blank">导出</a>
-	                    <a href="${ctx}/act/model/delete?id=${model.id}" onclick="return confirmx('确认要删除该模型吗？', this.href)">删除</a>
+	                    <a href="${ctx}/act/model/delete?id=${model.id}" onclick="return confirmx('确认要删除该模型吗？', this.href)">Delete</a>
 					</td>
 				</tr>
 			</c:forEach>

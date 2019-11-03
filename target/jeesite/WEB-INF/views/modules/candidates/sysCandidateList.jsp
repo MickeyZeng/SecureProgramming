@@ -34,7 +34,7 @@
 			<li><label>party ID：</label>
 				<form:input path="partyid" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -45,9 +45,9 @@
 				<th>Candidate ID</th>
 				<th>Candidate Name</th>
 				<th>party ID</th>
-				<th>更新时间</th>
-				<th>备注信息</th>
-				<shiro:hasPermission name="candidates:sysCandidate:edit"><th>操作</th></shiro:hasPermission>
+				<th>Update Time</th>
+				<th>Recomment</th>
+				<shiro:hasPermission name="candidates:sysCandidate:edit"><th>Operator</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -69,8 +69,8 @@
 					${sysCandidate.remarks}
 				</td>
 				<shiro:hasPermission name="candidates:sysCandidate:edit"><td>
-    				<a href="${ctx}/candidates/sysCandidate/form?id=${sysCandidate.id}">修改</a>
-					<a href="${ctx}/candidates/sysCandidate/delete?id=${sysCandidate.id}" onclick="return confirmx('确认要删除该Candidates吗？', this.href)">删除</a>
+    				<a href="${ctx}/candidates/sysCandidate/form?id=${sysCandidate.id}">update</a>
+					<a href="${ctx}/candidates/sysCandidate/delete?id=${sysCandidate.id}" onclick="return confirmx('确认要删除该Candidates吗？', this.href)">Delete</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

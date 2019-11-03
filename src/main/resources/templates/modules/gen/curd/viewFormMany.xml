@@ -15,7 +15,7 @@
 			//$("#name").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
-					loading('正在提交，请稍等...');
+					loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -57,7 +57,7 @@
 				$(obj).parent().parent().addClass("error");
 			}else if(delFlag.val() == "1"){
 				delFlag.val("0");
-				$(obj).html("&times;").attr("title", "删除");
+				$(obj).html("&times;").attr("title", "Delete");
 				$(obj).parent().parent().removeClass("error");
 			}
 		}
@@ -67,8 +67,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${r"${ctx}"}/${urlPrefix}/">${functionNameSimple}列表</a></li>
-		<li class="active"><a href="${r"${ctx}"}/${urlPrefix}/form?id=${"${"+className+".id}"}">${functionNameSimple}<shiro:hasPermission name="${permissionPrefix}:edit">${r"${not empty "+className+".id?'修改':'添加'}"}</shiro:hasPermission><shiro:lacksPermission name="${permissionPrefix}:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${r"${ctx}"}/${urlPrefix}/">${functionNameSimple}List</a></li>
+		<li class="active"><a href="${r"${ctx}"}/${urlPrefix}/form?id=${"${"+className+".id}"}">${functionNameSimple}<shiro:hasPermission name="${permissionPrefix}:edit">${r"${not empty "+className+".id?'update':'Add'}"}</shiro:hasPermission><shiro:lacksPermission name="${permissionPrefix}:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="${className}" action="${r"${ctx}"}/${urlPrefix}/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -185,7 +185,7 @@
 								</#if>
 							</#list>
 							<shiro:hasPermission name="${permissionPrefix}:edit"><td class="text-center" width="10">
-								{{#delBtn}}<span class="close" onclick="delRow(this, '#${child.className?uncap_first}List{{idx}}')" title="删除">&times;</span>{{/delBtn}}
+								{{#delBtn}}<span class="close" onclick="delRow(this, '#${child.className?uncap_first}List{{idx}}')" title="Delete">&times;</span>{{/delBtn}}
 							</td></shiro:hasPermission>
 						</tr>//-->
 					</script>
@@ -203,8 +203,8 @@
 			</div>
 		</#list>
 		<div class="form-actions">
-			<shiro:hasPermission name="${permissionPrefix}:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<shiro:hasPermission name="${permissionPrefix}:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>
+			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
 </body>

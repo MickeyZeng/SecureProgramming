@@ -17,7 +17,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class ArticleData extends DataEntity<ArticleData> {
 
 	private static final long serialVersionUID = 1L;
-	private String id;		// 编号
+	private String id;		// ID
 	private String content;	// 内容
 	private String copyfrom;// 来源
 	private String relation;// 相关文章

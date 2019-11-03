@@ -9,7 +9,7 @@
 			$("#name").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
-					loading('正在提交，请稍等...');
+					loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -28,7 +28,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/test/test/">硕正列表</a></li>
-		<li class="active"><a href="${ctx}/test/test/form?id=${test.id}">组件<shiro:hasPermission name="test:test:edit">${not empty test.id?'修改':'表单'}</shiro:hasPermission><shiro:lacksPermission name="test:test:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/test/test/form?id=${test.id}">组件<shiro:hasPermission name="test:test:edit">${not empty test.id?'update':'表单'}</shiro:hasPermission><shiro:lacksPermission name="test:test:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="test" action="${ctx}/test/test/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -132,8 +132,8 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="test:test:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<shiro:hasPermission name="test:test:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>
+			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
 </body>

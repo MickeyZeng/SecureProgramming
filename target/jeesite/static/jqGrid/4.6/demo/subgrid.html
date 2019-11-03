@@ -29,7 +29,7 @@
 				{header:'二级指标', name:'ejzb', width:150},
 				{header:'三级指标', name:'sjzb', width:150},
 				{header:'分值', name:'fz', width:150},
-				{header:'操作', name:'actions', width:80, fixed:true, sortable:false, resizable:false, fixed:true, formatter: function(val, obj, row, act){
+				{header:'Operator', name:'actions', width:80, fixed:true, sortable:false, resizable:false, fixed:true, formatter: function(val, obj, row, act){
 					var actions = [];
 					actions.push('<a href="${ctx}?'+row.id+'" class="btnList" title="查看"><i class="fa fa-pencil"></i></a>&nbsp;');
 					return actions.join('');
@@ -59,7 +59,7 @@
 						{header:'指标属性', name:'zbsx', width:150},
 						{header:'考评周期', name:'kpzq', width:150},
 						{header:'分值', name:'fz', width:150},
-						{header:'操作', name:'actions', width:80, fixed:true, sortable:false, resizable:false, fixed:true, formatter: function(val, obj, row, act){
+						{header:'Operator', name:'actions', width:80, fixed:true, sortable:false, resizable:false, fixed:true, formatter: function(val, obj, row, act){
 							var actions = [];
 							actions.push('<a href="${ctx}?'+row.id+'" class="btnList" title="查看"><i class="fa fa-pencil"></i></a>&nbsp;');
 							return actions.join('');
@@ -91,7 +91,7 @@
 								{header:'指标属性', name:'zbsx', width:150},
 								{header:'考评周期', name:'kpzq', width:150},
 								{header:'分值', name:'fz', width:150},
-								{header:'操作', name:'actions', width:80, fixed:true, sortable:false, resizable:false, fixed:true, formatter: function(val, obj, row, act){
+								{header:'Operator', name:'actions', width:80, fixed:true, sortable:false, resizable:false, fixed:true, formatter: function(val, obj, row, act){
 									var actions = [];
 									actions.push('<a href="${ctx}?'+row.id+'" class="btnList" title="查看"><i class="fa fa-pencil"></i></a>&nbsp;');
 									return actions.join('');
@@ -123,7 +123,7 @@
 										{header:'指标属性', name:'zbsx', width:150},
 										{header:'考评周期', name:'kpzq', width:150},
 										{header:'分值', name:'fz', width:150},
-										{header:'操作', name:'actions', width:80, fixed:true, sortable:false, resizable:false, fixed:true, formatter: function(val, obj, row, act){
+										{header:'Operator', name:'actions', width:80, fixed:true, sortable:false, resizable:false, fixed:true, formatter: function(val, obj, row, act){
 											var actions = [];
 											actions.push('<a href="${ctx}?'+row.id+'" class="btnList" title="查看"><i class="fa fa-pencil"></i></a>&nbsp;');
 											return actions.join('');
@@ -182,7 +182,7 @@
 			</li>
 			<li>
 				<label></label>
-				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 			</li>
 			<li>
 				<label></label>
@@ -203,7 +203,7 @@
 		<input type="hidden" id="sjzbId4" name="sjzbId">
 	</form:form>
 	<sys:message content="${message}"/>
-	<div class="searchDiv"><div class="searchText">列表</div></div>
+	<div class="searchDiv"><div class="searchText">List</div></div>
 	<table id="dataGrid"></table>
     <div id="dataGridPage" class="pagination"></div>
 </body>

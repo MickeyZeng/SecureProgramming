@@ -94,7 +94,7 @@ public class LinkController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(Link link, String categoryId, @RequestParam(required=false) Boolean isRe, RedirectAttributes redirectAttributes) {
 		linkService.delete(link, isRe);
-		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"删除")+"链接成功");
+		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"Delete")+"链接成功");
 		return "redirect:" + adminPath + "/cms/link/?repage&category.id="+categoryId;
 	}
 

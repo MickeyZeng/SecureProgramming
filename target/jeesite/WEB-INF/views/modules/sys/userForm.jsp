@@ -20,7 +20,7 @@
 				},
 				submitHandler: function(form){
 					loading('Loading...');
-					// loading('正在提交，请稍等...');
+					// loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -42,7 +42,7 @@
 		<li><a href="${ctx}/sys/user/list">user List</a></li>
 <%--		<li><a href="${ctx}/sys/user/list">用户列表</a></li>--%>
 		<li class="active"><a href="${ctx}/sys/user/form?id=${user.id}">User<shiro:hasPermission name="sys:user:edit">${not empty user.id?'Update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="sys:user:edit">Check</shiro:lacksPermission></a></li>
-<%--		<li class="active"><a href="${ctx}/sys/user/form?id=${user.id}">用户<shiro:hasPermission name="sys:user:edit">${not empty user.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:user:edit">查看</shiro:lacksPermission></a></li>--%>
+<%--		<li class="active"><a href="${ctx}/sys/user/form?id=${user.id}">用户<shiro:hasPermission name="sys:user:edit">${not empty user.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="sys:user:edit">查看</shiro:lacksPermission></a></li>--%>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="user" action="${ctx}/sys/user/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -191,9 +191,9 @@
 		</c:if>
 		<div class="form-actions">
 			<shiro:hasPermission name="sys:user:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Save"/>&nbsp;</shiro:hasPermission>
-<%--			<shiro:hasPermission name="sys:user:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>--%>
+<%--			<shiro:hasPermission name="sys:user:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>--%>
 			<input id="btnCancel" class="btn" type="button" value="Return" onclick="history.go(-1)"/>
-<%--			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>--%>
+<%--			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>--%>
 		</div>
 	</form:form>
 </body>

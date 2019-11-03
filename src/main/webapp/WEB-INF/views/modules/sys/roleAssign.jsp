@@ -48,7 +48,7 @@
 						var ids = h.find("iframe")[0].contentWindow.ids;
 						//nodes = selectedTree.getSelectedNodes();
 						if (v=="ok"){
-							// 删除''的元素
+							// Delete''的元素
 							if(ids[0]==''){
 								ids.shift();
 								pre_ids.shift();
@@ -60,7 +60,7 @@
 							};
 					    	// 执行保存
 					    	loading('Loading...');
-					    	// loading('正在提交，请稍等...');
+					    	// loading('Loading.....');
 					    	var idsArr = "";
 					    	for (var i = 0; i<ids.length; i++) {
 					    		idsArr = (idsArr + ids[i]) + (((i + 1)== ids.length) ? '':',');
@@ -81,7 +81,7 @@
 	</div>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead><tr><th>Parent Office</th><th>Department</th><th>Login Name</th><th>Name</th><th>Phone</th><th>Mobile Phone</th><shiro:hasPermission name="sys:user:edit"><th>Operate</th></shiro:hasPermission></tr></thead>
-<%--		<thead><tr><th>归属公司</th><th>归属部门</th><th>登录名</th><th>姓名</th><th>电话</th><th>手机</th><shiro:hasPermission name="sys:user:edit"><th>操作</th></shiro:hasPermission></tr></thead>--%>
+<%--		<thead><tr><th>归属公司</th><th>归属部门</th><th>登录名</th><th>姓名</th><th>电话</th><th>手机</th><shiro:hasPermission name="sys:user:edit"><th>Operator</th></shiro:hasPermission></tr></thead>--%>
 		<tbody>
 		<c:forEach items="${userList}" var="user">
 			<tr>

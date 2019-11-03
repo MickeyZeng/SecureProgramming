@@ -187,7 +187,7 @@ public class SupcanController extends BaseController {
 		
 		// 设置树列表，表头
 		List<Object> cols = treeList.getCols();
-		cols.add(new Col("id", "编号"));
+		cols.add(new Col("id", "ID"));
 		cols.add(new Col("office", "归属部门"));
 		cols.add(new Col("loginName", "登录名"));
 		cols.add(new Col("name", "名称"));
@@ -199,7 +199,7 @@ public class SupcanController extends BaseController {
 		Group group = new Group("时间");
 		List<Object> groupCol = group.getCols();
 		groupCol.add(new Col("createDate", "创建时间"));
-		groupCol.add(new Col("updateDate", "更新时间"));
+		groupCol.add(new Col("updateDate", "Update Time"));
 		
 		// 分组2
 		Group group2 = new Group("时间2");

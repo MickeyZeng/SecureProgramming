@@ -17,7 +17,7 @@
 				},
 				submitHandler: function(form){
 					loading('loading...');
-					// loading('正在提交，请稍等...');
+					// loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -70,7 +70,7 @@
 		</div>
 		<div class="form-actions">
 			<input id="btnSubmit" class="btn btn-primary" type="submit" value="Save"/>
-<%--			<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>--%>
+<%--			<input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>--%>
 		</div>
 	</form:form>
 </body>

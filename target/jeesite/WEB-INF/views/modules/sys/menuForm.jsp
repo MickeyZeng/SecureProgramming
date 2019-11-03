@@ -11,7 +11,7 @@
 			$("#inputForm").validate({
 				submitHandler: function(form){
 					loading('Submiting...Loading...');
-					// loading('正在提交，请稍等...');
+					// loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -33,7 +33,7 @@
 		<li><a href="${ctx}/sys/menu/">Menu list</a></li>
 <%--		<li><a href="${ctx}/sys/menu/">菜单列表</a></li>--%>
 		<li class="active"><a href="${ctx}/sys/menu/form?id=${menu.id}&parent.id=${menu.parent.id}">Menu<shiro:hasPermission name="sys:menu:edit">${not empty menu.id?'Update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="sys:menu:edit">Check</shiro:lacksPermission></a></li>
-<%--		<li class="active"><a href="${ctx}/sys/menu/form?id=${menu.id}&parent.id=${menu.parent.id}">菜单<shiro:hasPermission name="sys:menu:edit">${not empty menu.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:menu:edit">查看</shiro:lacksPermission></a></li>--%>
+<%--		<li class="active"><a href="${ctx}/sys/menu/form?id=${menu.id}&parent.id=${menu.parent.id}">菜单<shiro:hasPermission name="sys:menu:edit">${not empty menu.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="sys:menu:edit">查看</shiro:lacksPermission></a></li>--%>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="menu" action="${ctx}/sys/menu/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -115,9 +115,9 @@
 		</div>
 		<div class="form-actions">
 			<shiro:hasPermission name="sys:menu:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Save"/>&nbsp;</shiro:hasPermission>
-<%--			<shiro:hasPermission name="sys:menu:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>--%>
+<%--			<shiro:hasPermission name="sys:menu:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>--%>
 			<input id="btnCancel" class="btn" type="button" value="Return" onclick="history.go(-1)"/>
-<%--			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>--%>
+<%--			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>--%>
 		</div>
 	</form:form>
 </body>

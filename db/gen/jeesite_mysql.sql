@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS gen_template;
 
 CREATE TABLE gen_scheme
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	name varchar(200) COMMENT '名称',
 	category varchar(2000) COMMENT '分类',
 	package_name varchar(500) COMMENT '生成包路径',
@@ -27,16 +27,16 @@ CREATE TABLE gen_scheme
 	create_by varchar(64) COMMENT '创建者',
 	create_date datetime COMMENT '创建时间',
 	update_by varchar(64) COMMENT '更新者',
-	update_date datetime COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
+	update_date datetime COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：Delete）',
 	PRIMARY KEY (id)
 ) COMMENT = '生成方案';
 
 
 CREATE TABLE gen_table
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	name varchar(200) COMMENT '名称',
 	comments varchar(500) COMMENT '描述',
 	class_name varchar(100) COMMENT '实体类名称',
@@ -45,16 +45,16 @@ CREATE TABLE gen_table
 	create_by varchar(64) COMMENT '创建者',
 	create_date datetime COMMENT '创建时间',
 	update_by varchar(64) COMMENT '更新者',
-	update_date datetime COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
+	update_date datetime COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：Delete）',
 	PRIMARY KEY (id)
 ) COMMENT = '业务表';
 
 
 CREATE TABLE gen_table_column
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	gen_table_id varchar(64) COMMENT '归属表编号',
 	name varchar(200) COMMENT '名称',
 	comments varchar(500) COMMENT '描述',
@@ -75,16 +75,16 @@ CREATE TABLE gen_table_column
 	create_by varchar(64) COMMENT '创建者',
 	create_date datetime COMMENT '创建时间',
 	update_by varchar(64) COMMENT '更新者',
-	update_date datetime COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
+	update_date datetime COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：Delete）',
 	PRIMARY KEY (id)
 ) COMMENT = '业务表字段';
 
 
 CREATE TABLE gen_template
 (
-	id varchar(64) NOT NULL COMMENT '编号',
+	id varchar(64) NOT NULL COMMENT 'ID',
 	name varchar(200) COMMENT '名称',
 	category varchar(2000) COMMENT '分类',
 	file_path varchar(500) COMMENT '生成文件路径',
@@ -93,9 +93,9 @@ CREATE TABLE gen_template
 	create_by varchar(64) COMMENT '创建者',
 	create_date datetime COMMENT '创建时间',
 	update_by varchar(64) COMMENT '更新者',
-	update_date datetime COMMENT '更新时间',
-	remarks varchar(255) COMMENT '备注信息',
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
+	update_date datetime COMMENT 'Update Time',
+	remarks varchar(255) COMMENT 'Recomment',
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：Delete）',
 	PRIMARY KEY (id)
 ) COMMENT = '代码模板表';
 

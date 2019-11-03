@@ -26,7 +26,7 @@
 			location = "${ctx}/test/test/form";
 		}
 		
-		// 修改
+		// update
 		function edit(){
 			var id = su.getCellText("id");
 			if (id != ""){
@@ -37,16 +37,16 @@
 			}
 		}
 		
-		//删除
+		//Delete
 		function dele(){
 			var ids = su.getCellText("id", true);
 			if (ids != ""){
 				$.get("${ctx}/test/test/delete?id=" + ids, function(data){
 					if (data == "true"){
-						showTip("删除“" + su.getCellText("name", true) + "”成功。");
+						showTip("Delete“" + su.getCellText("name", true) + "”成功。");
 						page();
 					}else{
-						showTip("删除“" + su.getCellText("name", true) + "”失败！");
+						showTip("Delete“" + su.getCellText("name", true) + "”失败！");
 					}
 				});
 			}else{
@@ -75,18 +75,18 @@
 	<div class="btn-toolbar breadcrumb">
 		<div class="btn-group">
 			<a class="btn" href="javascript:add();"><i class="icon-file"></i>新建</a>
-			<a class="btn" href="javascript:edit();"><i class="icon-edit"></i>修改</a>
-			<a class="btn" href="javascript:dele();" onclick="return confirmx('确认要删除该测试吗？', this.href)"><i class="icon-remove"></i>删除</a>
+			<a class="btn" href="javascript:edit();"><i class="icon-edit"></i>update</a>
+			<a class="btn" href="javascript:dele();" onclick="return confirmx('确认要删除该测试吗？', this.href)"><i class="icon-remove"></i>Delete</a>
 		</div>
 		<div class="btn-group" >
-			<a class="btn" onclick="$('#searchForm').toggle();su.autoHeight();"><i class="icon-search"></i>查询</a>
+			<a class="btn" onclick="$('#searchForm').toggle();su.autoHeight();"><i class="icon-search"></i>Check</a>
 		</div>
 	</div>
 	<form:form id="searchForm" modelAttribute="test" action="${ctx}/test/test/listData.json" method="post" class="breadcrumb form-search hide" onsubmit="return page();">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<label>名称 ：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"/>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 	</form:form>
 	<sys:message content="${message}"/>
 	<div id="supcan" class="supcan">

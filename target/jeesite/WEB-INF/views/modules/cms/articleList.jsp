@@ -35,12 +35,12 @@
 		<label>栏目：</label><sys:treeselect id="category" name="category.id" value="${article.category.id}" labelName="category.name" labelValue="${article.category.name}"
 					title="栏目" url="/cms/category/treeData" module="article" notAllowSelectRoot="false" cssClass="input-small"/>
 		<label>标题：</label><form:input path="title" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-		<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>&nbsp;&nbsp;
+		<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>&nbsp;&nbsp;
 		<label>状态：</label><form:radiobuttons onclick="$('#searchForm').submit();" path="delFlag" items="${fns:getDictList('cms_del_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
-		<thead><tr><th>栏目</th><th>标题</th><th>权重</th><th>点击数</th><th>发布者</th><th>更新时间</th><th>操作</th></tr></thead>
+		<thead><tr><th>栏目</th><th>标题</th><th>权重</th><th>点击数</th><th>发布者</th><th>Update Time</th><th>Operator</th></tr></thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="article">
 			<tr>
@@ -56,9 +56,9 @@
 						<c:if test="${article.category.allowComment eq '1'}"><shiro:hasPermission name="cms:comment:view">
 							<a href="${ctx}/cms/comment/?module=article&contentId=${article.id}&delFlag=2" onclick="return viewComment(this.href);">评论</a>
 						</shiro:hasPermission></c:if>
-	    				<a href="${ctx}/cms/article/form?id=${article.id}">修改</a>
+	    				<a href="${ctx}/cms/article/form?id=${article.id}">update</a>
 	    				<shiro:hasPermission name="cms:article:audit">
-							<a href="${ctx}/cms/article/delete?id=${article.id}${article.delFlag ne 0?'&isRe=true':''}&categoryId=${article.category.id}" onclick="return confirmx('确认要${article.delFlag ne 0?'发布':'删除'}该文章吗？', this.href)" >${article.delFlag ne 0?'发布':'删除'}</a>
+							<a href="${ctx}/cms/article/delete?id=${article.id}${article.delFlag ne 0?'&isRe=true':''}&categoryId=${article.category.id}" onclick="return confirmx('确认要${article.delFlag ne 0?'发布':'Delete'}该文章吗？', this.href)" >${article.delFlag ne 0?'发布':'Delete'}</a>
 						</shiro:hasPermission>
 					</shiro:hasPermission>
 				</td>

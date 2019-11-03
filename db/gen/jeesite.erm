@@ -240,7 +240,7 @@
 			<array_dimension>null</array_dimension>
 			<unsigned>false</unsigned>
 			<args></args>
-			<description>删除标记（0：正常；1：删除）</description>
+			<description>删除标记（0：正常；1：Delete）</description>
 			<logical_name>删除标记</logical_name>
 			<physical_name>del_flag</physical_name>
 			<type>character(n)</type>
@@ -344,8 +344,8 @@
 			<array_dimension>null</array_dimension>
 			<unsigned>false</unsigned>
 			<args></args>
-			<description>编号</description>
-			<logical_name>编号</logical_name>
+			<description>ID</description>
+			<logical_name>ID</logical_name>
 			<physical_name>id</physical_name>
 			<type>varchar(n)</type>
 		</word>
@@ -552,8 +552,8 @@
 			<array_dimension>null</array_dimension>
 			<unsigned>false</unsigned>
 			<args></args>
-			<description>备注信息</description>
-			<logical_name>备注信息</logical_name>
+			<description>Recomment</description>
+			<logical_name>Recomment</logical_name>
 			<physical_name>remarks</physical_name>
 			<type>nvarchar(n)</type>
 		</word>
@@ -630,8 +630,8 @@
 			<array_dimension>null</array_dimension>
 			<unsigned>false</unsigned>
 			<args></args>
-			<description>更新时间</description>
-			<logical_name>更新时间</logical_name>
+			<description>Update Time</description>
+			<logical_name>Update Time</logical_name>
 			<physical_name>update_date</physical_name>
 			<type>datetime</type>
 		</word>

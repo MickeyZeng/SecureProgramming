@@ -127,7 +127,7 @@ CKFinder.lang['zh-cn'] =
 
 	NewSubFolder	: '创建子文件夹',
 	Rename			: '重命名',
-	Delete			: '删除',
+	Delete			: 'Delete',
 	DeleteFiles		: '删除文件', // MISSING
 
 	CopyDragDrop	: '将文件复制至此',
@@ -169,7 +169,7 @@ CKFinder.lang['zh-cn'] =
 	UploadAddFiles		: '添加文件',
 	UploadClearFiles	: '清空文件',
 	UploadCancel		: '取消上传',
-	UploadRemove		: '删除',
+	UploadRemove		: 'Delete',
 	UploadRemoveTip		: '已删除!f',
 	UploadUploaded		: '已上传!n%',
 	UploadProcessing	: '上传中...',
@@ -178,7 +178,7 @@ CKFinder.lang['zh-cn'] =
 	SetTitle		: '设置',
 	SetView			: '查看:',
 	SetViewThumb	: '缩略图',
-	SetViewList		: '列表',
+	SetViewList		: 'List',
 	SetDisplay		: '显示:',
 	SetDisplayName	: '文件名',
 	SetDisplayDate	: '日期',
@@ -276,7 +276,7 @@ CKFinder.lang['zh-cn'] =
 	// Fileeditor plugin
 	Fileeditor :
 	{
-		save			: '保存',
+		save			: 'Save',
 		fileOpenError	: '无法打开文件.',
 		fileSaveSuccess	: '成功保存文件.',
 		contextMenuName	: '编辑',

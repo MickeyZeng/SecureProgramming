@@ -38,7 +38,7 @@
 	<sys:message content="${message}"/>
 	<table id="treeTable" class="table table-striped table-bordered table-condensed">
 		<thead><tr><th>Area name</th><th>Area code</th><th>Area type</th><th>Comment</th><shiro:hasPermission name="sys:area:edit"><th>Operator</th></shiro:hasPermission></tr></thead>
-<%--		<thead><tr><th>区域名称</th><th>区域编码</th><th>区域类型</th><th>备注</th><shiro:hasPermission name="sys:area:edit"><th>操作</th></shiro:hasPermission></tr></thead>--%>
+<%--		<thead><tr><th>区域名称</th><th>区域编码</th><th>区域类型</th><th>备注</th><shiro:hasPermission name="sys:area:edit"><th>Operator</th></shiro:hasPermission></tr></thead>--%>
 		<tbody id="treeTableList"></tbody>
 	</table>
 	<script type="text/template" id="treeTableTpl">
@@ -49,9 +49,9 @@
 			<td>{{row.remarks}}</td>
 			<shiro:hasPermission name="sys:area:edit"><td>
 				<a href="${ctx}/sys/area/form?id={{row.id}}">Update</a>
-<%--				<a href="${ctx}/sys/area/form?id={{row.id}}">修改</a>--%>
+<%--				<a href="${ctx}/sys/area/form?id={{row.id}}">update</a>--%>
 				<a href="${ctx}/sys/area/delete?id={{row.id}}" onclick="return confirmx('Do you wanna delete this area？', this.href)">Delete</a>
-<%--				<a href="${ctx}/sys/area/delete?id={{row.id}}" onclick="return confirmx('要删除该区域及所有子区域项吗？', this.href)">删除</a>--%>
+<%--				<a href="${ctx}/sys/area/delete?id={{row.id}}" onclick="return confirmx('要删除该区域及所有子区域项吗？', this.href)">Delete</a>--%>
 				<a href="${ctx}/sys/area/form?parent.id={{row.id}}">Add area</a>
 <%--				<a href="${ctx}/sys/area/form?parent.id={{row.id}}">添加下级区域</a> --%>
 			</td></shiro:hasPermission>

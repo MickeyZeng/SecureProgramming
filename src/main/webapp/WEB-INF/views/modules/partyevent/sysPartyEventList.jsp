@@ -31,7 +31,7 @@
 			<li><label>Event ID：</label>
 				<form:input path="eventid" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -41,9 +41,9 @@
 			<tr>
 				<th>party ID</th>
 				<th>Event ID</th>
-				<th>更新时间</th>
-				<th>备注信息</th>
-				<shiro:hasPermission name="partyevent:sysPartyEvent:edit"><th>操作</th></shiro:hasPermission>
+				<th>Update Time</th>
+				<th>Recomment</th>
+				<shiro:hasPermission name="partyevent:sysPartyEvent:edit"><th>Operator</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,8 +62,8 @@
 					${sysPartyEvent.remarks}
 				</td>
 				<shiro:hasPermission name="partyevent:sysPartyEvent:edit"><td>
-    				<a href="${ctx}/partyevent/sysPartyEvent/form?id=${sysPartyEvent.id}">修改</a>
-					<a href="${ctx}/partyevent/sysPartyEvent/delete?id=${sysPartyEvent.id}" onclick="return confirmx('确认要删除该Party-event吗？', this.href)">删除</a>
+    				<a href="${ctx}/partyevent/sysPartyEvent/form?id=${sysPartyEvent.id}">update</a>
+					<a href="${ctx}/partyevent/sysPartyEvent/delete?id=${sysPartyEvent.id}" onclick="return confirmx('确认要删除该Party-event吗？', this.href)">Delete</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

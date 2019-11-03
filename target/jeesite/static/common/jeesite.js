@@ -88,7 +88,7 @@ function showTip(mess, type, timeout, lazytime){
 // 显示加载框
 function loading(mess){
 	if (mess == undefined || mess == ""){
-		mess = "正在提交，请稍等...";
+		mess = "Loading.....";
 	}
 	resetTip();
 	top.$.jBox.tip(mess,'loading',{opacity:0});

@@ -9,7 +9,7 @@
 			//$("#name").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
-					loading('正在提交，请稍等...');
+					loading('Loading.....');
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -50,7 +50,7 @@
 				$(obj).parent().parent().addClass("error");
 			}else if(delFlag.val() == "1"){
 				delFlag.val("0");
-				$(obj).html("&times;").attr("title", "删除");
+				$(obj).html("&times;").attr("title", "Delete");
 				$(obj).parent().parent().removeClass("error");
 			}
 		}
@@ -59,7 +59,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/test/testDataMain/">主子表列表</a></li>
-		<li class="active"><a href="${ctx}/test/testDataMain/form?id=${testDataMain.id}">主子表<shiro:hasPermission name="test:testDataMain:edit">${not empty testDataMain.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="test:testDataMain:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/test/testDataMain/form?id=${testDataMain.id}">主子表<shiro:hasPermission name="test:testDataMain:edit">${not empty testDataMain.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="test:testDataMain:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="testDataMain" action="${ctx}/test/testDataMain/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -109,7 +109,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">备注信息：</label>
+			<label class="control-label">Recomment：</label>
 			<div class="controls">
 				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 			</div>
@@ -122,7 +122,7 @@
 							<tr>
 								<th class="hide"></th>
 								<th>名称</th>
-								<th>备注信息</th>
+								<th>Recomment</th>
 								<shiro:hasPermission name="test:testDataMain:edit"><th width="10">&nbsp;</th></shiro:hasPermission>
 							</tr>
 						</thead>
@@ -145,7 +145,7 @@
 								<input id="testDataChildList{{idx}}_remarks" name="testDataChildList[{{idx}}].remarks" type="text" value="{{row.remarks}}" maxlength="255" class="input-small "/>
 							</td>
 							<shiro:hasPermission name="test:testDataMain:edit"><td class="text-center" width="10">
-								{{#delBtn}}<span class="close" onclick="delRow(this, '#testDataChildList{{idx}}')" title="删除">&times;</span>{{/delBtn}}
+								{{#delBtn}}<span class="close" onclick="delRow(this, '#testDataChildList{{idx}}')" title="Delete">&times;</span>{{/delBtn}}
 							</td></shiro:hasPermission>
 						</tr>//-->
 					</script>
@@ -162,8 +162,8 @@
 				</div>
 			</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="test:testDataMain:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<shiro:hasPermission name="test:testDataMain:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="save"/>&nbsp;</shiro:hasPermission>
+			<input id="btnCancel" class="btn" type="button" value="Back" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
 </body>

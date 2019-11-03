@@ -39,7 +39,7 @@
 				value="${paramMap.beginDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			<label>结束日期：</label><input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
 				value="${paramMap.endDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>&nbsp;&nbsp;
-			<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+			<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 		</div>
 	</form:form>
 	<sys:message content="${message}"/>

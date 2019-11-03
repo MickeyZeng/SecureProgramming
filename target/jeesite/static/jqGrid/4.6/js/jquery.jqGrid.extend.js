@@ -1266,9 +1266,9 @@ $.extend($.jgrid,{
 	        bClose: "关闭"
 	    },
 	    del : {
-	        caption: "删除",
+	        caption: "Delete",
 	        msg: "删除所选记录？",
-	        bSubmit: "删除",
+	        bSubmit: "Delete",
 	        bCancel: "取消"
 	    },
 	    nav : {

@@ -33,7 +33,7 @@ public class Guestbook extends DataEntity<Guestbook> {
 	private User reUser; 		// 回复人
 	private Date reDate;	// 回复时间
 	private String reContent;// 回复内容
-	private String delFlag;	// 删除标记删除标记（0：正常；1：删除；2：审核）
+	private String delFlag;	// 删除标记删除标记（0：正常；1：Delete；2：审核）
 
 	public Guestbook() {
 		this.delFlag = DEL_FLAG_AUDIT;

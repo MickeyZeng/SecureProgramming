@@ -41,7 +41,7 @@ CKEDITOR.lang['zh-cn'] =
 	// Toolbar buttons without dialogs.
 	source			: '源码',
 	newPage			: '新建',
-	save			: '保存',
+	save			: 'Save',
 	preview			: '预览',
 	cut				: '剪切',
 	copy			: '复制',
@@ -79,7 +79,7 @@ CKEDITOR.lang['zh-cn'] =
 		textarea		: '多行文本',
 		hiddenField		: '隐藏域',
 		button			: '按钮',
-		select			: '列表/菜单',
+		select			: 'List/菜单',
 		imageButton		: '图像域',
 		notSet			: '<没有设置>',
 		id				: 'ID',
@@ -372,12 +372,12 @@ CKEDITOR.lang['zh-cn'] =
 		chkMulti	: '允许多选',
 		opText		: '选项文本',
 		opValue		: '选项值',
-		btnAdd		: '添加',
-		btnModify	: '修改',
+		btnAdd		: 'Add',
+		btnModify	: 'update',
 		btnUp		: '上移',
 		btnDown		: '下移',
 		btnSetValue : '设为初始选定',
-		btnDelete	: '删除'
+		btnDelete	: 'Delete'
 	},
 
 	// Textarea Dialog.
@@ -710,7 +710,7 @@ CKEDITOR.lang['zh-cn'] =
 		dic_field_name	: '字典名称',
 		dic_create		: '创建',
 		dic_restore		: '还原',
-		dic_delete		: '删除',
+		dic_delete		: 'Delete',
 		dic_rename		: '重命名',
 		dic_info		: '一开始用户词典储存在 Cookie 中, 但是 Cookies 的容量是有限的, 当用户词典增长到超出 Cookie 限制时就无法再储存了, 这时您可以将词典储存到我们的服务器上. 要把您的个人词典到储存到我们的服务器上的话, 需要为您的词典指定一个名称, 如果您在我们的服务器上已经有储存有一个词典, 请输入词典名称并按还原按钮.',
 

@@ -122,7 +122,7 @@ public class ArticleController extends BaseController {
 			addMessage(redirectAttributes, "你没有删除或发布权限");
 		}
 		articleService.delete(article, isRe);
-		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"删除")+"文章成功");
+		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"Delete")+"文章成功");
 		return "redirect:" + adminPath + "/cms/article/?repage&category.id="+(categoryId!=null?categoryId:"");
 	}
 

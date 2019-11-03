@@ -29,14 +29,14 @@
 			<form:options items="${fns:getDictList('gen_category')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 		</form:select>
 		<label>名称 ：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"/>
-		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 	</form:form>
 	<div id="messageBoxError" class="alert alert-error"><button data-dismiss="alert" class="close">×</button>
 		代码模板管理，已废弃！模板管理改为XML配置方式，见  /src/main/java/com/thinkgem/jeesite/modules/gen/template 文件夹
 	</div>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
-		<thead><tr><th>名称</th><th>分类</th><th>备注</th><shiro:hasPermission name="gen:genTemplate:edit"><th>操作</th></shiro:hasPermission></tr></thead>
+		<thead><tr><th>名称</th><th>分类</th><th>备注</th><shiro:hasPermission name="gen:genTemplate:edit"><th>Operator</th></shiro:hasPermission></tr></thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="genTemplate">
 			<tr>
@@ -44,8 +44,8 @@
 				<td>${fns:getDictLabels(genTemplate.category, 'gen_category', '')}</td>
 				<td>${fns:abbr(genTemplate.remarks, 100)}</td>
 				<shiro:hasPermission name="gen:genTemplate:edit"><td>
-    				<a href="${ctx}/gen/genTemplate/form?id=${genTemplate.id}">修改</a>
-					<a href="${ctx}/gen/genTemplate/delete?id=${genTemplate.id}" onclick="return confirmx('确认要删除该代码模板吗？', this.href)">删除</a>
+    				<a href="${ctx}/gen/genTemplate/form?id=${genTemplate.id}">update</a>
+					<a href="${ctx}/gen/genTemplate/delete?id=${genTemplate.id}" onclick="return confirmx('确认要删除该代码模板吗？', this.href)">Delete</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

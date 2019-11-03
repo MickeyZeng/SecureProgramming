@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>Party管理</title>
+	<title>Party Manage</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -19,8 +19,8 @@
 <body>
 <%--	<h1>${eventID}</h1>--%>
 	<ul class="nav nav-tabs">
-		<li class="active">Party列表</li>
-		<shiro:hasPermission name="party:sysPartCandidate:edit"><li><a href="${ctx}/party/sysPartCandidate/form">Party添加</a></li></shiro:hasPermission>
+		<li class="active">Party List</li>
+		<shiro:hasPermission name="party:sysPartCandidate:edit"><li><a href="${ctx}/party/sysPartCandidate/form">Add Party</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="sysPartCandidate" action="${ctx}/party/sysPartCandidate/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -32,7 +32,7 @@
 			<li><label>party Name：</label>
 				<form:input path="partyname" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -43,7 +43,7 @@
 				<th>party ID</th>
 				<th>party Name</th>
 				<th>party Description</th>
-				<shiro:hasPermission name="party:sysPartCandidate:edit"><th>操作</th></shiro:hasPermission>
+				<shiro:hasPermission name="party:sysPartCandidate:edit"><th>Operator</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -59,7 +59,7 @@
 					${sysPartCandidate.partydescription}
 				</td>
 				<td>
-    				<a href="${ctx}/resultparty/sysResultParty/vote?id=${sysPartCandidate.id}+${eventID}+${sizes}">投票</a>
+    				<a href="${ctx}/resultparty/sysResultParty/vote?id=${sysPartCandidate.id}+${eventID}+${sizes}">Vote</a>
 				</td>
 			</tr>
 		</c:forEach>

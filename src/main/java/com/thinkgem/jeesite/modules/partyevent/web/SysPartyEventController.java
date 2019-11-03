@@ -63,6 +63,9 @@ public class SysPartyEventController extends BaseController {
 		return "modules/partyevent/sysPartyEventForm";
 	}
 
+	/**
+	 * In order to save the data in the databases
+	 * */
 	@RequiresPermissions("partyevent:sysPartyEvent:edit")
 	@RequestMapping(value = "save")
 	public String save(SysPartyEvent sysPartyEvent, Model model, RedirectAttributes redirectAttributes) {
@@ -72,7 +75,7 @@ public class SysPartyEventController extends BaseController {
 		sysPartyEvent.setIsNewRecord(true);
 		sysPartyEvent.setId(sysPartyEvent.getEventid() + sysPartyEvent.getPartyid());
 		sysPartyEventService.save(sysPartyEvent);
-		addMessage(redirectAttributes, "保存Party-event成功");
+		addMessage(redirectAttributes, "Save Party-event");
 //		return "redirect:"+Global.getAdminPath()+"/partyevent/sysPartyEvent/?repage";
 		return "redirect:" +Global.getAdminPath()+ "/event/sysEvent";
 	}

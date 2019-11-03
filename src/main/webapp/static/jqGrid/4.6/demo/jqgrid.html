@@ -27,7 +27,7 @@ $(document).ready(function(){
 			root: "list", page: "pageNo", total: "totalPage",
 			records: "count", subgrid: {root:"list"}
 		},
-		colNames:['编号','类型', '<font color=red>关键字</font>', '日期','访问数','其它'],
+		colNames:['ID','类型', '<font color=red>关键字</font>', '日期','访问数','其它'],
 		colModel:[
 			{name:'Id',index:'id', width:55, sortable:false, frozen : true},
 			{name:'DataType',index:'data_type', width:120, frozen : true},
@@ -117,7 +117,7 @@ $(document).ready(function(){
 			records: "count",
 			subgrid: {root:"list"}
 		},
-		colNames:['编号','类型', '<font color=red>关键字</font>', '日期','访问数','操作'],
+		colNames:['ID','类型', '<font color=red>关键字</font>', '日期','访问数','Operator'],
 		colModel:[
 			{name:'Id',index:'id', width:55, sortable:false, frozen : true},
 			{name:'DataType',index:'data_type', width:120, frozen : true},
@@ -125,7 +125,7 @@ $(document).ready(function(){
 			{name:'DoTime',index:'do_time', width:160, align:"center"},
 			{name:'DataCount',index:'data_count', width:80, align:"right", formatter: 'number'},		
 			{name:'btns',index:'total', width:100,formatter: function(val, obj, row, act){
-				return " <a href='#"+row.Id+"'>添加</a> <a href='#"+row.Id+"'>删除</a>"
+				return " <a href='#"+row.Id+"'>Add</a> <a href='#"+row.Id+"'>Delete</a>"
 			}}
 		],
 		rowNum:-1,

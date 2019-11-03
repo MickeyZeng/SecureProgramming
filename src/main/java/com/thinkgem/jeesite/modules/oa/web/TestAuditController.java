@@ -117,7 +117,7 @@ public class TestAuditController extends BaseController {
 	}
 	
 	/**
-	 * 申请单保存/修改
+	 * 申请单保存/update
 	 * @param testAudit
 	 * @param model
 	 * @param redirectAttributes

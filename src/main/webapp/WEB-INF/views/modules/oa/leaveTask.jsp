@@ -335,7 +335,7 @@
 				<th>当前节点</th>
 				<th>任务创建时间</th>
 				<th>流程状态</th>
-				<th>操作</th>
+				<th>Operator</th>
 			</tr>
 		<tbody>
 			<c:forEach items="${leaves}" var="leave">

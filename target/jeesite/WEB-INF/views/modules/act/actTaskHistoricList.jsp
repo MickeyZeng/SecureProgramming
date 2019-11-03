@@ -34,7 +34,7 @@
 			<input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate" style="width:163px;"
 				value="<fmt:formatDate value="${act.endDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});"/>
-			&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+			&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="Check"/>
 		</div>
 		
 	</form:form>
@@ -48,7 +48,7 @@
 				<th>流程名称</th>
 				<th>流程版本</th>
 				<th>完成时间</th>
-				<th>操作</th>
+				<th>Operator</th>
 			</tr>
 		</thead>
 		<tbody>

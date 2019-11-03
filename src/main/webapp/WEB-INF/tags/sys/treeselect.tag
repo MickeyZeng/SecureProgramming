@@ -1,6 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
-<%@ attribute name="id" type="java.lang.String" required="true" description="编号"%>
+<%@ attribute name="id" type="java.lang.String" required="true" description="ID"%>
 <%@ attribute name="name" type="java.lang.String" required="true" description="隐藏域名称（ID）"%>
 <%@ attribute name="value" type="java.lang.String" required="true" description="隐藏域值（ID）"%>
 <%@ attribute name="labelName" type="java.lang.String" required="true" description="输入框名称（Name）"%>

@@ -16,7 +16,7 @@
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<tr><th>Role name</th><th>English name</th><th>Office</th><th>Data Scope</th><shiro:hasPermission name="sys:role:edit"><th>Operator</th></shiro:hasPermission></tr>
-<%--		<tr><th>角色名称</th><th>英文名称</th><th>归属机构</th><th>数据范围</th><shiro:hasPermission name="sys:role:edit"><th>操作</th></shiro:hasPermission></tr>--%>
+<%--		<tr><th>角色名称</th><th>英文名称</th><th>归属机构</th><th>数据范围</th><shiro:hasPermission name="sys:role:edit"><th>Operator</th></shiro:hasPermission></tr>--%>
 		<c:forEach items="${list}" var="role">
 			<tr>
 				<td><a href="form?id=${role.id}">${role.name}</a></td>
@@ -30,7 +30,7 @@
 						<a href="${ctx}/sys/role/form?id=${role.id}">Update</a>
 					</c:if>
 					<a href="${ctx}/sys/role/delete?id=${role.id}" onclick="return confirmx('Delete this Role？', this.href)">Delete</a>
-<%--					<a href="${ctx}/sys/role/delete?id=${role.id}" onclick="return confirmx('确认要删除该角色吗？', this.href)">删除</a>--%>
+<%--					<a href="${ctx}/sys/role/delete?id=${role.id}" onclick="return confirmx('确认要删除该角色吗？', this.href)">Delete</a>--%>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
