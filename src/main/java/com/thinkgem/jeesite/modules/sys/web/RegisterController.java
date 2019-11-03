@@ -30,7 +30,6 @@ public class RegisterController extends BaseController {
 
     @RequestMapping(value = {"reg", ""})
     public String reg(User user, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
-        System.out.println("FUCK&&&&&&&&&&&&&&&&");
         return "modules/sys/userReg";
     }
 
