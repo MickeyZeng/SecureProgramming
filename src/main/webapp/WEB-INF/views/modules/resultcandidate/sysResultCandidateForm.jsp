@@ -28,7 +28,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/resultcandidate/sysResultCandidate/">resultCandidate List</a></li>
-		<li class="active"><a href="${ctx}/resultcandidate/sysResultCandidate/form?id=${sysResultCandidate.id}">resultCandidate<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit">${not empty sysResultCandidate.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="resultcandidate:sysResultCandidate:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/resultcandidate/sysResultCandidate/form?id=${sysResultCandidate.id}">resultCandidate<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit">${not empty sysResultCandidate.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="resultcandidate:sysResultCandidate:edit">Check</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="sysResultCandidate" action="${ctx}/resultcandidate/sysResultCandidate/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

@@ -41,14 +41,14 @@
 			<span class="help-inline"><font color="red">*</font> </span>
 		</div>
 	</div>
-	<div class="control-group">
-		<label class="control-label">Driver Licence ID:</label>
-			<%--			<label class="control-label">工号:</label>--%>
-		<div class="controls">
-			<form:input path="no" htmlEscape="false" maxlength="50" class="required"/>
-			<span class="help-inline"><font color="red">*</font> </span>
-		</div>
-	</div>
+<%--	<div class="control-group">--%>
+<%--		<label class="control-label">Driver Licence ID:</label>--%>
+<%--			&lt;%&ndash;			<label class="control-label">工号:</label>&ndash;%&gt;--%>
+<%--		<div class="controls">--%>
+<%--			<form:input path="no" htmlEscape="false" maxlength="50" class="required"/>--%>
+<%--			<span class="help-inline"><font color="red">*</font> </span>--%>
+<%--		</div>--%>
+<%--	</div>--%>
 	<div class="control-group">
 		<label class="control-label">Name:</label>
 			<%--			<label class="control-label">姓名:</label>--%>

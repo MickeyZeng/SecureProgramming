@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>Event管理</title>
+	<title>Event Manage</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,7 +18,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/event/sysEvent/">Event列表</a></li>
+		<li class="active"><a href="${ctx}/event/sysEvent/">Event List</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="sysEvent" action="${ctx}/event/sysEvent/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

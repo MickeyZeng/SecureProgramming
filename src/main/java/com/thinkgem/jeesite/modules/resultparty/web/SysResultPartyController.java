@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * resultPartyController
+ *
  * @author ZJQ
  * @version 2019-10-29
  */
@@ -36,126 +37,138 @@ import java.util.List;
 @RequestMapping(value = "${adminPath}/resultparty/sysResultParty")
 public class SysResultPartyController extends BaseController {
 
-	@Autowired
-	private SysResultPartyService sysResultPartyService;
+    @Autowired
+    private SysResultPartyService sysResultPartyService;
 
-	@Autowired
-	private SysEventService sysEventService;
+    @Autowired
+    private SysEventService sysEventService;
 
-	@Autowired
-	private SysPartCandidateService sysPartCandidateService;
-
-
-	@ModelAttribute
-	public SysResultParty get(@RequestParam(required=false) String id) {
-		SysResultParty entity = null;
-		if (StringUtils.isNotBlank(id)){
-			entity = sysResultPartyService.get(id);
-		}
-		if (entity == null){
-			entity = new SysResultParty();
-		}
-		return entity;
-	}
-	
-	@RequiresPermissions("resultparty:sysResultParty:view")
-	@RequestMapping(value = {"list", ""})
-	public String list(SysResultParty sysResultParty, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<SysResultParty> page = sysResultPartyService.findPage(new Page<SysResultParty>(request, response), sysResultParty); 
-		model.addAttribute("page", page);
-		return "modules/resultparty/sysResultPartyList";
-	}
-
-	/**
-	 * This function is for displaying the result of party
-	 * */
-	@RequiresPermissions("resultparty:sysResultParty:view")
-	@RequestMapping(value = "calculate")
-	public String calculate(SysResultParty sysResultParty, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<SysResultParty> page = sysResultPartyService.findPage(new Page<SysResultParty>(request, response), sysResultParty);
-		List<SysResultParty> resultParties = page.getList();
-		for (int i = 0; i < resultParties.size(); i++) {
-			for (int j = i + 1; j < resultParties.size(); j++) {
-				if(resultParties.get(i).getPartyid().equals(resultParties.get(j).getPartyid()) && resultParties.get(j).getEventid().equals(resultParties.get(j).getEventid())){
-					resultParties.get(i).setResult(Integer.toString(Integer.valueOf(resultParties.get(i).getResult()) + Integer.valueOf(resultParties.get(j).getResult())));
-					resultParties.remove(j);
-					j = j - 1;
-				}
-			}
-		}
-
-		for (int i = 0; i < resultParties.size(); i++) {
-			resultParties.get(i).setEventid(sysEventService.get(resultParties.get(i).getEventid()).getEventname());
-			resultParties.get(i).setPartyid(sysPartCandidateService.get(resultParties.get(i).getPartyid()).getPartyname());
-		}
-
-		Page<SysResultParty> resultPage  = new Page<SysResultParty>();
-		resultPage.setList(resultParties);
-
-		model.addAttribute("page", resultPage);
-		return "modules/resultparty/calculateResult";
-	}
-
-	@RequiresPermissions("resultparty:sysResultParty:view")
-	@RequestMapping(value = "form")
-	public String form(SysResultParty sysResultParty, Model model) {
-		model.addAttribute("sysResultParty", sysResultParty);
-		return "modules/resultparty/sysResultPartyForm";
-	}
-
-	@RequiresPermissions("resultparty:sysResultParty:edit")
-	@RequestMapping(value = "save")
-	public String save(SysResultParty sysResultParty, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, sysResultParty)){
-			return form(sysResultParty, model);
-		}
-		sysResultPartyService.save(sysResultParty);
-		addMessage(redirectAttributes, "保存resultParty成功");
-		return "redirect:"+Global.getAdminPath()+"/resultparty/sysResultParty/?repage";
-	}
-	
-	@RequiresPermissions("resultparty:sysResultParty:edit")
-	@RequestMapping(value = "delete")
-	public String delete(SysResultParty sysResultParty, RedirectAttributes redirectAttributes) {
-		sysResultPartyService.delete(sysResultParty);
-		addMessage(redirectAttributes, "删除resultParty成功");
-		return "redirect:"+Global.getAdminPath()+"/resultparty/sysResultParty/?repage";
-	}
+    @Autowired
+    private SysPartCandidateService sysPartCandidateService;
 
 
-	@RequestMapping(value = "vote")
-	public String vote(SysResultParty sysResultParty, Model model, RedirectAttributes redirectAttributes) {
-		String partyID = sysResultParty.getId().split(" ")[0];
-		char[] c = partyID.toCharArray();
-		String party = "";
-		String eventID = sysResultParty.getId().split(" ")[1];
-		String size = sysResultParty.getId().split(" ")[2];
+    @ModelAttribute
+    public SysResultParty get(@RequestParam(required = false) String id) {
+        SysResultParty entity = null;
+        if (StringUtils.isNotBlank(id)) {
+            entity = sysResultPartyService.get(id);
+        }
+        if (entity == null) {
+            entity = new SysResultParty();
+        }
+        return entity;
+    }
 
-		for (int i = 0; i < c.length/2; i++) {
-			party = c[i] + party;
-		}
+    @RequiresPermissions("resultparty:sysResultParty:view")
+    @RequestMapping(value = {"list", ""})
+    public String list(SysResultParty sysResultParty, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<SysResultParty> page = sysResultPartyService.findPage(new Page<SysResultParty>(request, response), sysResultParty);
+        model.addAttribute("page", page);
+        return "modules/resultparty/sysResultPartyList";
+    }
 
-		sysResultParty.setId(party+eventID+UserUtils.getUser().getId());
-		sysResultParty.setEventid(eventID);
-		sysResultParty.setPartyid(partyID);
-		sysResultParty.setIsNewRecord(true);
+    /**
+     * This function is for displaying the result of party
+     */
+    @RequiresPermissions("resultparty:sysResultParty:view")
+    @RequestMapping(value = "calculate")
+    public String calculate(SysResultParty sysResultParty, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<SysResultParty> page = sysResultPartyService.findPage(new Page<SysResultParty>(request, response), sysResultParty);
+        List<SysResultParty> resultParties = page.getList();
+        for (int i = 0; i < resultParties.size(); i++) {
+            for (int j = i + 1; j < resultParties.size(); j++) {
+                if (resultParties.get(i).getPartyid().equals(resultParties.get(j).getPartyid()) && resultParties.get(j).getEventid().equals(resultParties.get(j).getEventid())) {
+                    resultParties.get(i).setResult(Integer.toString(Integer.valueOf(resultParties.get(i).getResult()) + Integer.valueOf(resultParties.get(j).getResult())));
+                    resultParties.remove(j);
+                    j = j - 1;
+                }
+            }
+        }
 
-		//For test
-		if(sysResultPartyService.get(party+eventID+UserUtils.getUser().getId()) == null){
-			sysResultParty.setResult(size);
-			size = Integer.toString(Integer.valueOf(size) - 1);
+        for (int i = 0; i < resultParties.size(); i++) {
+            resultParties.get(i).setEventid(sysEventService.get(resultParties.get(i).getEventid()).getEventname());
+            resultParties.get(i).setPartyid(sysPartCandidateService.get(resultParties.get(i).getPartyid()).getPartyname());
+        }
+
+        Page<SysResultParty> resultPage = new Page<SysResultParty>();
+        resultPage.setList(resultParties);
+
+        model.addAttribute("page", resultPage);
+        return "modules/resultparty/calculateResult";
+    }
+
+    @RequiresPermissions("resultparty:sysResultParty:view")
+    @RequestMapping(value = "form")
+    public String form(SysResultParty sysResultParty, Model model) {
+        model.addAttribute("sysResultParty", sysResultParty);
+        return "modules/resultparty/sysResultPartyForm";
+    }
+
+    @RequiresPermissions("resultparty:sysResultParty:edit")
+    @RequestMapping(value = "save")
+    public String save(SysResultParty sysResultParty, Model model, RedirectAttributes redirectAttributes) {
+        if (!beanValidator(model, sysResultParty)) {
+            return form(sysResultParty, model);
+        }
+        sysResultPartyService.save(sysResultParty);
+        addMessage(redirectAttributes, "保存resultParty成功");
+        return "redirect:" + Global.getAdminPath() + "/resultparty/sysResultParty/?repage";
+    }
+
+    @RequiresPermissions("resultparty:sysResultParty:edit")
+    @RequestMapping(value = "delete")
+    public String delete(SysResultParty sysResultParty, RedirectAttributes redirectAttributes) {
+        sysResultPartyService.delete(sysResultParty);
+        addMessage(redirectAttributes, "删除resultParty成功");
+        return "redirect:" + Global.getAdminPath() + "/resultparty/sysResultParty/?repage";
+    }
+
+
+    @RequestMapping(value = "vote")
+    public String vote(SysResultParty sysResultParty, Model model, RedirectAttributes redirectAttributes) {
+        String partyID = sysResultParty.getId().split(" ")[0];
+        char[] c = partyID.toCharArray();
+        String party = "";
+        String peopleUser = "";
+        char[] userID = UserUtils.getUser().getId().toCharArray();
+        String eventID = sysResultParty.getId().split(" ")[1];
+        String size = sysResultParty.getId().split(" ")[2];
+
+        for (int i = 0; i < c.length / 2; i++) {
+            party = c[i] + party;
+        }
+
+        if (userID.length > 3) {
+            for (int i = 0; i < 3; i++) {
+                peopleUser = peopleUser + userID[i];
+            }
+        } else {
+            for (int i = 0; i < userID.length; i++) {
+                peopleUser = peopleUser + userID[i];
+            }
+        }
+
+        sysResultParty.setId(party + eventID + peopleUser);
+        sysResultParty.setEventid(eventID);
+        sysResultParty.setPartyid(partyID);
+        sysResultParty.setIsNewRecord(true);
+
+        //For test
+        if (sysResultPartyService.get(party + eventID + peopleUser) == null) {
+            sysResultParty.setResult(size);
+            size = Integer.toString(Integer.valueOf(size) - 1);
 //		System.out.println(partyID + "%%%%%%%%%%%%%%%%" + eventID);
-			sysResultPartyService.save(sysResultParty);
-		}else{
-			addMessage(redirectAttributes, "You cannot vote same party.");
-		}
+            sysResultPartyService.save(sysResultParty);
+        } else {
+            addMessage(redirectAttributes, "You cannot vote same party.");
+        }
 
-		if(Integer.valueOf(size) > 1){
-			System.out.println("Is it here?????");
-			return "redirect:" + Global.getAdminPath() + "/party/sysPartCandidate/eTOp?id="+eventID+" "+size;
-		}else{
-			return "redirect:"+Global.getAdminPath()+"/event/sysEvent/display";
-		}
+        if (Integer.valueOf(size) > 1) {
+            System.out.println("Is it here?????");
+            return "redirect:" + Global.getAdminPath() + "/party/sysPartCandidate/eTOp?id=" + eventID + " " + size;
+        } else {
+            return "redirect:" + Global.getAdminPath() + "/event/sysEvent/display";
+        }
 //		addMessage(redirectAttributes, "保存resultParty成功");
-	}
+    }
 }

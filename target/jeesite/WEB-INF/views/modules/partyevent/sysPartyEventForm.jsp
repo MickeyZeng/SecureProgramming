@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>Party-event管理</title>
+	<title>Party-event Manage</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,8 +27,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/partyevent/sysPartyEvent/">Party-event列表</a></li>
-		<li class="active"><a href="${ctx}/partyevent/sysPartyEvent/form?id=${sysPartyEvent.id}">Party-event<shiro:hasPermission name="partyevent:sysPartyEvent:edit">${not empty sysPartyEvent.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="partyevent:sysPartyEvent:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/partyevent/sysPartyEvent/">Party-event List</a></li>
+		<li class="active"><a href="${ctx}/partyevent/sysPartyEvent/form?id=${sysPartyEvent.id}">Party-event<shiro:hasPermission name="partyevent:sysPartyEvent:edit">${not empty sysPartyEvent.id?'update':'Add'}</shiro:hasPermission><shiro:lacksPermission name="partyevent:sysPartyEvent:edit">Check</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="sysPartyEvent" action="${ctx}/partyevent/sysPartyEvent/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

@@ -126,15 +126,11 @@ public class SysResultCandidateController extends BaseController {
     @RequestMapping(value = "vote")
     public String vote(SysResultCandidate sysResultCandidate, Model model, RedirectAttributes redirectAttributes) {
 
-//        String[] test = sysResultCandidate.getId().split(" ");
-//        for (int i = 0; i < test.length; i++) {
-//            System.out.println("************(((())))");
-//            System.out.println(test[i]);
-//        }
-
         String personID = sysResultCandidate.getId().split(" ")[0];
         char[] c = personID.toCharArray();
+        char[] userID = UserUtils.getUser().getId().toCharArray();
         String person = "";
+        String peopleUser = "";
         String eventID = sysResultCandidate.getId().split(" ")[1];
         String result = sysResultCandidate.getId().split(" ")[2];
 
@@ -142,13 +138,23 @@ public class SysResultCandidateController extends BaseController {
             person = person + c[i];
         }
 
-        sysResultCandidate.setId(person + eventID + UserUtils.getUser().getId());
+        if(userID.length > 3) {
+            for (int i = 0; i < 3; i++) {
+                peopleUser = peopleUser + userID[i];
+            }
+        }else{
+            for (int i = 0; i < userID.length; i++) {
+                peopleUser = peopleUser + userID[i];
+            }
+        }
+
+        sysResultCandidate.setId(person + eventID + peopleUser);
         sysResultCandidate.setEventid(eventID);
         sysResultCandidate.setCandidateid(personID);
         sysResultCandidate.setIsNewRecord(true);
 
         //For test
-        if (sysResultCandidateService.get(person + eventID + UserUtils.getUser().getId()) == null) {
+        if (sysResultCandidateService.get(person + eventID + peopleUser) == null) {
             sysResultCandidate.setResult(result);
             result = Integer.toString(Integer.valueOf(result) - 1);
 //		System.out.println(partyID + "%%%%%%%%%%%%%%%%" + eventID);

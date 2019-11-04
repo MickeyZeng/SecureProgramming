@@ -18,8 +18,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/resultparty/sysResultParty/">resultParty列表</a></li>
-		<shiro:hasPermission name="resultparty:sysResultParty:edit"><li><a href="${ctx}/resultparty/sysResultParty/form">resultParty添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/resultparty/sysResultParty/">resultParty List</a></li>
+		<shiro:hasPermission name="resultparty:sysResultParty:edit"><li><a href="${ctx}/resultparty/sysResultParty/form">resultParty Add</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="sysResultParty" action="${ctx}/resultparty/sysResultParty/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>resultCandidate管理</title>
+	<title>resultCandidate Manage</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,8 +18,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/resultcandidate/sysResultCandidate/">resultCandidate列表</a></li>
-		<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit"><li><a href="${ctx}/resultcandidate/sysResultCandidate/form">resultCandidate添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/resultcandidate/sysResultCandidate/">resultCandidate List</a></li>
+		<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit"><li><a href="${ctx}/resultcandidate/sysResultCandidate/form">resultCandidate Add</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="sysResultCandidate" action="${ctx}/resultcandidate/sysResultCandidate/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

@@ -19,7 +19,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/resultcandidate/sysResultCandidate/">resultCandidate List</a></li>
-		<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit"><li><a href="${ctx}/resultcandidate/sysResultCandidate/form">resultCandidate添加</a></li></shiro:hasPermission>
+<%--		<shiro:hasPermission name="resultcandidate:sysResultCandidate:edit"><li><a href="${ctx}/resultcandidate/sysResultCandidate/form">resultCandidate添加</a></li></shiro:hasPermission>--%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="sysResultCandidate" action="${ctx}/resultcandidate/sysResultCandidate/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
